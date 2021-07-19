@@ -1,0 +1,381 @@
+fileFormatVersion: 2
+guid: 2ed95372f8bd37044bc102db565828f2
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Armature
+    100004: Chest
+    100006: CloakBack0
+    100008: CloakBack1
+    100010: CloakBack2
+    100012: CloakBack3
+    100014: CloakBack4
+    100016: CloakBack5
+    100018: CloakBack6
+    100020: CloakBack6_end
+    100022: CloakBack6_end_end
+    100024: CloakBackL0
+    100026: CloakBackL1
+    100028: CloakBackL2
+    100030: CloakBackL3
+    100032: CloakBackL4
+    100034: CloakBackL5
+    100036: CloakBackL6
+    100038: CloakBackL6_end
+    100040: CloakBackL6_end_end
+    100042: CloakBackR0
+    100044: CloakBackR1
+    100046: CloakBackR2
+    100048: CloakBackR3
+    100050: CloakBackR4
+    100052: CloakBackR5
+    100054: CloakBackR6
+    100056: CloakBackR6_end
+    100058: CloakBackR6_end_end
+    100060: CloakRoot
+    100062: CloakWrist0
+    100064: CloakWrist1
+    100066: CloakWrist2
+    100068: CloakWrist2_end
+    100070: CloakWrist2_end_end
+    100072: FeatherRoot
+    100074: Feathers0
+    100076: Feathers1
+    100078: Feathers2
+    100080: Feathers2_end
+    100082: Feathers2_end_end
+    100084: FeathersL0
+    100086: FeathersL1
+    100088: FeathersL2
+    100090: FeathersL2_end
+    100092: FeathersL2_end_end
+    100094: FeathersR0
+    100096: FeathersR1
+    100098: FeathersR2
+    100100: FeathersR2_end
+    100102: FeathersR2_end_end
+    100104: Head
+    100106: Head_end
+    100108: Head_end_end
+    100110: Hips
+    100112: IndexFinger1_L
+    100114: IndexFinger1_R
+    100116: IndexFinger2_L
+    100118: IndexFinger2_R
+    100120: IndexFinger3_L
+    100122: IndexFinger3_L_end
+    100124: IndexFinger3_L_end_end
+    100126: IndexFinger3_L_end_end_end
+    100128: IndexFinger3_R
+    100130: IndexFinger3_R_end
+    100132: IndexFinger3_R_end_end
+    100134: IndexFinger3_R_end_end_end
+    100136: Left ankle
+    100138: Left arm
+    100140: Left elbow
+    100142: Left knee
+    100144: Left leg
+    100146: Left shoulder
+    100148: Left toe
+    100150: Left toe_end
+    100152: Left toe_end_end
+    100154: Left wrist
+    100156: meshArbiter
+    100158: MiddleFinger1_L
+    100160: MiddleFinger1_R
+    100162: MiddleFinger2_L
+    100164: MiddleFinger2_R
+    100166: MiddleFinger3_L
+    100168: MiddleFinger3_L_end
+    100170: MiddleFinger3_L_end_end
+    100172: MiddleFinger3_L_end_end_end
+    100174: MiddleFinger3_R
+    100176: MiddleFinger3_R_end
+    100178: MiddleFinger3_R_end_end
+    100180: MiddleFinger3_R_end_end_end
+    100182: Neck0
+    100184: Neck1
+    100186: Neck2
+    100188: Neck3
+    100190: PinkyFinger1_L
+    100192: PinkyFinger1_R
+    100194: PinkyFinger2_L
+    100196: PinkyFinger2_R
+    100198: PinkyFinger3_L
+    100200: PinkyFinger3_L_end
+    100202: PinkyFinger3_L_end_end
+    100204: PinkyFinger3_L_end_end_end
+    100206: PinkyFinger3_R
+    100208: PinkyFinger3_R_end
+    100210: PinkyFinger3_R_end_end
+    100212: PinkyFinger3_R_end_end_end
+    100214: Right ankle
+    100216: Right arm
+    100218: Right elbow
+    100220: Right knee
+    100222: Right leg
+    100224: Right shoulder
+    100226: Right toe
+    100228: Right toe_end
+    100230: Right toe_end_end
+    100232: Right wrist
+    100234: RingFinger1_L
+    100236: RingFinger1_R
+    100238: RingFinger2_L
+    100240: RingFinger2_R
+    100242: RingFinger3_L
+    100244: RingFinger3_L_end
+    100246: RingFinger3_L_end_end
+    100248: RingFinger3_L_end_end_end
+    100250: RingFinger3_R
+    100252: RingFinger3_R_end
+    100254: RingFinger3_R_end_end
+    100256: RingFinger3_R_end_end_end
+    100258: ROOT
+    100260: Spine
+    100262: Thumb0_L
+    100264: Thumb0_R
+    100266: Thumb1_L
+    100268: Thumb1_R
+    100270: Thumb2_L
+    100272: Thumb2_L_end
+    100274: Thumb2_L_end_end
+    100276: Thumb2_L_end_end_end
+    100278: Thumb2_R
+    100280: Thumb2_R_end
+    100282: Thumb2_R_end_end
+    100284: Thumb2_R_end_end_end
+    400000: //RootNode
+    400002: Armature
+    400004: Chest
+    400006: CloakBack0
+    400008: CloakBack1
+    400010: CloakBack2
+    400012: CloakBack3
+    400014: CloakBack4
+    400016: CloakBack5
+    400018: CloakBack6
+    400020: CloakBack6_end
+    400022: CloakBack6_end_end
+    400024: CloakBackL0
+    400026: CloakBackL1
+    400028: CloakBackL2
+    400030: CloakBackL3
+    400032: CloakBackL4
+    400034: CloakBackL5
+    400036: CloakBackL6
+    400038: CloakBackL6_end
+    400040: CloakBackL6_end_end
+    400042: CloakBackR0
+    400044: CloakBackR1
+    400046: CloakBackR2
+    400048: CloakBackR3
+    400050: CloakBackR4
+    400052: CloakBackR5
+    400054: CloakBackR6
+    400056: CloakBackR6_end
+    400058: CloakBackR6_end_end
+    400060: CloakRoot
+    400062: CloakWrist0
+    400064: CloakWrist1
+    400066: CloakWrist2
+    400068: CloakWrist2_end
+    400070: CloakWrist2_end_end
+    400072: FeatherRoot
+    400074: Feathers0
+    400076: Feathers1
+    400078: Feathers2
+    400080: Feathers2_end
+    400082: Feathers2_end_end
+    400084: FeathersL0
+    400086: FeathersL1
+    400088: FeathersL2
+    400090: FeathersL2_end
+    400092: FeathersL2_end_end
+    400094: FeathersR0
+    400096: FeathersR1
+    400098: FeathersR2
+    400100: FeathersR2_end
+    400102: FeathersR2_end_end
+    400104: Head
+    400106: Head_end
+    400108: Head_end_end
+    400110: Hips
+    400112: IndexFinger1_L
+    400114: IndexFinger1_R
+    400116: IndexFinger2_L
+    400118: IndexFinger2_R
+    400120: IndexFinger3_L
+    400122: IndexFinger3_L_end
+    400124: IndexFinger3_L_end_end
+    400126: IndexFinger3_L_end_end_end
+    400128: IndexFinger3_R
+    400130: IndexFinger3_R_end
+    400132: IndexFinger3_R_end_end
+    400134: IndexFinger3_R_end_end_end
+    400136: Left ankle
+    400138: Left arm
+    400140: Left elbow
+    400142: Left knee
+    400144: Left leg
+    400146: Left shoulder
+    400148: Left toe
+    400150: Left toe_end
+    400152: Left toe_end_end
+    400154: Left wrist
+    400156: meshArbiter
+    400158: MiddleFinger1_L
+    400160: MiddleFinger1_R
+    400162: MiddleFinger2_L
+    400164: MiddleFinger2_R
+    400166: MiddleFinger3_L
+    400168: MiddleFinger3_L_end
+    400170: MiddleFinger3_L_end_end
+    400172: MiddleFinger3_L_end_end_end
+    400174: MiddleFinger3_R
+    400176: MiddleFinger3_R_end
+    400178: MiddleFinger3_R_end_end
+    400180: MiddleFinger3_R_end_end_end
+    400182: Neck0
+    400184: Neck1
+    400186: Neck2
+    400188: Neck3
+    400190: PinkyFinger1_L
+    400192: PinkyFinger1_R
+    400194: PinkyFinger2_L
+    400196: PinkyFinger2_R
+    400198: PinkyFinger3_L
+    400200: PinkyFinger3_L_end
+    400202: PinkyFinger3_L_end_end
+    400204: PinkyFinger3_L_end_end_end
+    400206: PinkyFinger3_R
+    400208: PinkyFinger3_R_end
+    400210: PinkyFinger3_R_end_end
+    400212: PinkyFinger3_R_end_end_end
+    400214: Right ankle
+    400216: Right arm
+    400218: Right elbow
+    400220: Right knee
+    400222: Right leg
+    400224: Right shoulder
+    400226: Right toe
+    400228: Right toe_end
+    400230: Right toe_end_end
+    400232: Right wrist
+    400234: RingFinger1_L
+    400236: RingFinger1_R
+    400238: RingFinger2_L
+    400240: RingFinger2_R
+    400242: RingFinger3_L
+    400244: RingFinger3_L_end
+    400246: RingFinger3_L_end_end
+    400248: RingFinger3_L_end_end_end
+    400250: RingFinger3_R
+    400252: RingFinger3_R_end
+    400254: RingFinger3_R_end_end
+    400256: RingFinger3_R_end_end_end
+    400258: ROOT
+    400260: Spine
+    400262: Thumb0_L
+    400264: Thumb0_R
+    400266: Thumb1_L
+    400268: Thumb1_R
+    400270: Thumb2_L
+    400272: Thumb2_L_end
+    400274: Thumb2_L_end_end
+    400276: Thumb2_L_end_end_end
+    400278: Thumb2_R
+    400280: Thumb2_R_end
+    400282: Thumb2_R_end_end
+    400284: Thumb2_R_end_end_end
+    2100000: ArbiterMasteryTex
+    4300000: meshArbiter
+    9500000: //RootNode
+    13700000: meshArbiter
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

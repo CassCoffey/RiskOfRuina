@@ -1,0 +1,209 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: maskAimPitchRedMist
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Body
+    m_Weight: 0
+  - m_Path: Coat
+    m_Weight: 0
+  - m_Path: Red Mist
+    m_Weight: 0
+  - m_Path: Red Mist/Root
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/CoatRoot
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/CoatRoot/CoatBack0
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/CoatRoot/CoatBack0/CoatBack1
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/CoatRoot/CoatBack0/CoatBack1/CoatBack2
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/CoatRoot/CoatBack0/CoatBack1/CoatBack2/CoatBack3
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/CoatRoot/CoatBack0/CoatBack1/CoatBack2/CoatBack3/CoatBack4
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/CoatRoot/CoatBackL0
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/CoatRoot/CoatBackL0/CoatBackL1
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/CoatRoot/CoatBackL0/CoatBackL1/CoatBackL2
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/CoatRoot/CoatBackL0/CoatBackL1/CoatBackL2/CoatBackL3
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/CoatRoot/CoatBackL0/CoatBackL1/CoatBackL2/CoatBackL3/CoatBackL4
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/CoatRoot/CoatBackR0
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/CoatRoot/CoatBackR0/CoatBackR1
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/CoatRoot/CoatBackR0/CoatBackR1/CoatBackR2
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/CoatRoot/CoatBackR0/CoatBackR1/CoatBackR2/CoatBackR3
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/CoatRoot/CoatBackR0/CoatBackR1/CoatBackR2/CoatBackR3/CoatBackR4
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/CoatRoot/CoatFrontL0
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/CoatRoot/CoatFrontL0/CoatFrontL1
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/CoatRoot/CoatFrontL0/CoatFrontL1/CoatFrontL2
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/CoatRoot/CoatFrontL0/CoatFrontL1/CoatFrontL2/CoatFrontL3
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/CoatRoot/CoatFrontL0/CoatFrontL1/CoatFrontL2/CoatFrontL3/CoatFrontL4
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/CoatRoot/CoatFrontR0
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/CoatRoot/CoatFrontR0/CoatFrontR1
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/CoatRoot/CoatFrontR0/CoatFrontR1/CoatFrontR2
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/CoatRoot/CoatFrontR0/CoatFrontR1/CoatFrontR2/CoatFrontR3
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/CoatRoot/CoatFrontR0/CoatFrontR1/CoatFrontR2/CoatFrontR3/CoatFrontR4
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/CoatRoot/CoatSideL0
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/CoatRoot/CoatSideL0/CoatSideL1
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/CoatRoot/CoatSideL0/CoatSideL1/CoatSideL2
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/CoatRoot/CoatSideL0/CoatSideL1/CoatSideL2/CoatSideL3
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/CoatRoot/CoatSideL0/CoatSideL1/CoatSideL2/CoatSideL3/CoatSideL4
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/CoatRoot/CoatSideR0
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/CoatRoot/CoatSideR0/CoatSideR1
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/CoatRoot/CoatSideR0/CoatSideR1/CoatSideR2
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/CoatRoot/CoatSideR0/CoatSideR1/CoatSideR2/CoatSideR3
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/CoatRoot/CoatSideR0/CoatSideR1/CoatSideR2/CoatSideR3/CoatSideR4
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/Left leg
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/Left leg/Left knee
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/Left leg/Left knee/Left ankle
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/Left leg/Left knee/Left ankle/Left toe
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/Right leg
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/Right leg/Right knee
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/Right leg/Right knee/Right ankle
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/Right leg/Right knee/Right ankle/Right toe
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/Spine
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/Spine/Chest
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/Spine/Chest/Left shoulder
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/Spine/Chest/Left shoulder/Left arm
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/Spine/Chest/Left shoulder/Left arm/Left elbow
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/Spine/Chest/Left shoulder/Left arm/Left elbow/Left
+      wrist
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/Spine/Chest/Left shoulder/Left arm/Left elbow/Left
+      wrist/IndexFinger1_L
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/Spine/Chest/Left shoulder/Left arm/Left elbow/Left
+      wrist/IndexFinger1_L/IndexFinger2_L
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/Spine/Chest/Left shoulder/Left arm/Left elbow/Left
+      wrist/IndexFinger1_L/IndexFinger2_L/IndexFinger3_L
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/Spine/Chest/Left shoulder/Left arm/Left elbow/Left
+      wrist/MiddleFinger1_L
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/Spine/Chest/Left shoulder/Left arm/Left elbow/Left
+      wrist/MiddleFinger1_L/MiddleFinger2_L
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/Spine/Chest/Left shoulder/Left arm/Left elbow/Left
+      wrist/MiddleFinger1_L/MiddleFinger2_L/MiddleFinger3_L
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/Spine/Chest/Left shoulder/Left arm/Left elbow/Left
+      wrist/RingFinger1_L
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/Spine/Chest/Left shoulder/Left arm/Left elbow/Left
+      wrist/RingFinger1_L/RingFinger2_L
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/Spine/Chest/Left shoulder/Left arm/Left elbow/Left
+      wrist/RingFinger1_L/RingFinger2_L/RingFinger3_L
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/Spine/Chest/Left shoulder/Left arm/Left elbow/Left
+      wrist/Thumb0_L
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/Spine/Chest/Left shoulder/Left arm/Left elbow/Left
+      wrist/Thumb0_L/Thumb1_L
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/Spine/Chest/Left shoulder/Left arm/Left elbow/Left
+      wrist/Thumb0_L/Thumb1_L/Thumb2_L
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/Spine/Chest/Neck
+    m_Weight: 1
+  - m_Path: Red Mist/Root/Hips/Spine/Chest/Neck/Head
+    m_Weight: 1
+  - m_Path: Red Mist/Root/Hips/Spine/Chest/Right shoulder
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/Spine/Chest/Right shoulder/Right arm
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/Spine/Chest/Right shoulder/Right arm/Right elbow
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/Spine/Chest/Right shoulder/Right arm/Right elbow/Right
+      wrist
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/Spine/Chest/Right shoulder/Right arm/Right elbow/Right
+      wrist/IndexFinger1_R
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/Spine/Chest/Right shoulder/Right arm/Right elbow/Right
+      wrist/IndexFinger1_R/IndexFinger2_R
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/Spine/Chest/Right shoulder/Right arm/Right elbow/Right
+      wrist/IndexFinger1_R/IndexFinger2_R/IndexFinger3_R
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/Spine/Chest/Right shoulder/Right arm/Right elbow/Right
+      wrist/MiddleFinger1_R
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/Spine/Chest/Right shoulder/Right arm/Right elbow/Right
+      wrist/MiddleFinger1_R/MiddleFinger2_R
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/Spine/Chest/Right shoulder/Right arm/Right elbow/Right
+      wrist/MiddleFinger1_R/MiddleFinger2_R/MiddleFinger3_R
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/Spine/Chest/Right shoulder/Right arm/Right elbow/Right
+      wrist/RingFinger1_R
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/Spine/Chest/Right shoulder/Right arm/Right elbow/Right
+      wrist/RingFinger1_R/RingFinger2_R
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/Spine/Chest/Right shoulder/Right arm/Right elbow/Right
+      wrist/RingFinger1_R/RingFinger2_R/RingFinger3_R
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/Spine/Chest/Right shoulder/Right arm/Right elbow/Right
+      wrist/Thumb0_R
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/Spine/Chest/Right shoulder/Right arm/Right elbow/Right
+      wrist/Thumb0_R/Thumb1_R
+    m_Weight: 0
+  - m_Path: Red Mist/Root/Hips/Spine/Chest/Right shoulder/Right arm/Right elbow/Right
+      wrist/Thumb0_R/Thumb1_R/Thumb2_R
+    m_Weight: 0

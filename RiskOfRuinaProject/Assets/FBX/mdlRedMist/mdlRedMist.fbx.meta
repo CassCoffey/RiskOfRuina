@@ -1,0 +1,271 @@
+fileFormatVersion: 2
+guid: 6cb464c0de81cd84aa2072a478179179
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Body
+    100002: Chest
+    100004: Coat
+    100006: CoatBack0
+    100008: CoatBack1
+    100010: CoatBack2
+    100012: CoatBack3
+    100014: CoatBack4
+    100016: CoatBackL0
+    100018: CoatBackL1
+    100020: CoatBackL2
+    100022: CoatBackL3
+    100024: CoatBackL4
+    100026: CoatBackR0
+    100028: CoatBackR1
+    100030: CoatBackR2
+    100032: CoatBackR3
+    100034: CoatBackR4
+    100036: CoatFrontL0
+    100038: CoatFrontL1
+    100040: CoatFrontL2
+    100042: CoatFrontL3
+    100044: CoatFrontL4
+    100046: CoatFrontR0
+    100048: CoatFrontR1
+    100050: CoatFrontR2
+    100052: CoatFrontR3
+    100054: CoatFrontR4
+    100056: CoatRoot
+    100058: CoatSideL0
+    100060: CoatSideL1
+    100062: CoatSideL2
+    100064: CoatSideL3
+    100066: CoatSideL4
+    100068: CoatSideR0
+    100070: CoatSideR1
+    100072: CoatSideR2
+    100074: CoatSideR3
+    100076: CoatSideR4
+    100078: Head
+    100080: Hips
+    100082: IndexFinger1_L
+    100084: IndexFinger1_R
+    100086: IndexFinger2_L
+    100088: IndexFinger2_R
+    100090: IndexFinger3_L
+    100092: IndexFinger3_R
+    100094: Left ankle
+    100096: Left arm
+    100098: Left elbow
+    100100: Left knee
+    100102: Left leg
+    100104: Left shoulder
+    100106: Left toe
+    100108: Left wrist
+    100110: MiddleFinger1_L
+    100112: MiddleFinger1_R
+    100114: MiddleFinger2_L
+    100116: MiddleFinger2_R
+    100118: MiddleFinger3_L
+    100120: MiddleFinger3_R
+    100122: Neck
+    100124: Red Mist
+    100126: //RootNode
+    100128: Right ankle
+    100130: Right arm
+    100132: Right elbow
+    100134: Right knee
+    100136: Right leg
+    100138: Right shoulder
+    100140: Right toe
+    100142: Right wrist
+    100144: RingFinger1_L
+    100146: RingFinger1_R
+    100148: RingFinger2_L
+    100150: RingFinger2_R
+    100152: RingFinger3_L
+    100154: RingFinger3_R
+    100156: Root
+    100158: Spine
+    100160: Thumb0_L
+    100162: Thumb0_R
+    100164: Thumb1_L
+    100166: Thumb1_R
+    100168: Thumb2_L
+    100170: Thumb2_R
+    400000: Body
+    400002: Chest
+    400004: Coat
+    400006: CoatBack0
+    400008: CoatBack1
+    400010: CoatBack2
+    400012: CoatBack3
+    400014: CoatBack4
+    400016: CoatBackL0
+    400018: CoatBackL1
+    400020: CoatBackL2
+    400022: CoatBackL3
+    400024: CoatBackL4
+    400026: CoatBackR0
+    400028: CoatBackR1
+    400030: CoatBackR2
+    400032: CoatBackR3
+    400034: CoatBackR4
+    400036: CoatFrontL0
+    400038: CoatFrontL1
+    400040: CoatFrontL2
+    400042: CoatFrontL3
+    400044: CoatFrontL4
+    400046: CoatFrontR0
+    400048: CoatFrontR1
+    400050: CoatFrontR2
+    400052: CoatFrontR3
+    400054: CoatFrontR4
+    400056: CoatRoot
+    400058: CoatSideL0
+    400060: CoatSideL1
+    400062: CoatSideL2
+    400064: CoatSideL3
+    400066: CoatSideL4
+    400068: CoatSideR0
+    400070: CoatSideR1
+    400072: CoatSideR2
+    400074: CoatSideR3
+    400076: CoatSideR4
+    400078: Head
+    400080: Hips
+    400082: IndexFinger1_L
+    400084: IndexFinger1_R
+    400086: IndexFinger2_L
+    400088: IndexFinger2_R
+    400090: IndexFinger3_L
+    400092: IndexFinger3_R
+    400094: Left ankle
+    400096: Left arm
+    400098: Left elbow
+    400100: Left knee
+    400102: Left leg
+    400104: Left shoulder
+    400106: Left toe
+    400108: Left wrist
+    400110: MiddleFinger1_L
+    400112: MiddleFinger1_R
+    400114: MiddleFinger2_L
+    400116: MiddleFinger2_R
+    400118: MiddleFinger3_L
+    400120: MiddleFinger3_R
+    400122: Neck
+    400124: Red Mist
+    400126: //RootNode
+    400128: Right ankle
+    400130: Right arm
+    400132: Right elbow
+    400134: Right knee
+    400136: Right leg
+    400138: Right shoulder
+    400140: Right toe
+    400142: Right wrist
+    400144: RingFinger1_L
+    400146: RingFinger1_R
+    400148: RingFinger2_L
+    400150: RingFinger2_R
+    400152: RingFinger3_L
+    400154: RingFinger3_R
+    400156: Root
+    400158: Spine
+    400160: Thumb0_L
+    400162: Thumb0_R
+    400164: Thumb1_L
+    400166: Thumb1_R
+    400168: Thumb2_L
+    400170: Thumb2_R
+    2100000: Body Tex
+    2100002: Coat Tex
+    4300000: Body
+    4300002: Coat
+    9500000: //RootNode
+    13700000: Body
+    13700002: Coat
+    2186277476908879412: ImportLogs
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

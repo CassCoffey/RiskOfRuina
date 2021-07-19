@@ -1,0 +1,339 @@
+fileFormatVersion: 2
+guid: 91c9289ccc2bd374b8d2e7287331ce39
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Armature
+    100004: Chest
+    100006: Cloak
+    100008: CloakBack0
+    100010: CloakBack1
+    100012: CloakBack2
+    100014: CloakBack3
+    100016: CloakBack4
+    100018: CloakBack5
+    100020: CloakBack6
+    100022: CloakBack6_end
+    100024: CloakBackL0
+    100026: CloakBackL1
+    100028: CloakBackL2
+    100030: CloakBackL3
+    100032: CloakBackL4
+    100034: CloakBackL5
+    100036: CloakBackL6
+    100038: CloakBackL6_end
+    100040: CloakBackR0
+    100042: CloakBackR1
+    100044: CloakBackR2
+    100046: CloakBackR3
+    100048: CloakBackR4
+    100050: CloakBackR5
+    100052: CloakBackR6
+    100054: CloakBackR6_end
+    100056: CloakRoot
+    100058: CloakWrist0
+    100060: CloakWrist1
+    100062: CloakWrist2
+    100064: CloakWrist2_end
+    100066: FeatherRoot
+    100068: Feathers0
+    100070: Feathers1
+    100072: Feathers2
+    100074: Feathers2_end
+    100076: FeathersL0
+    100078: FeathersL1
+    100080: FeathersL2
+    100082: FeathersL2_end
+    100084: FeathersR0
+    100086: FeathersR1
+    100088: FeathersR2
+    100090: FeathersR2_end
+    100092: Head
+    100094: Head_end
+    100096: Hips
+    100098: IndexFinger1_L
+    100100: IndexFinger1_R
+    100102: IndexFinger2_L
+    100104: IndexFinger2_R
+    100106: IndexFinger3_L
+    100108: IndexFinger3_L_end
+    100110: IndexFinger3_L_end_end
+    100112: IndexFinger3_R
+    100114: IndexFinger3_R_end
+    100116: IndexFinger3_R_end_end
+    100118: Left ankle
+    100120: Left arm
+    100122: Left elbow
+    100124: Left knee
+    100126: Left leg
+    100128: Left shoulder
+    100130: Left toe
+    100132: Left toe_end
+    100134: Left wrist
+    100136: MiddleFinger1_L
+    100138: MiddleFinger1_R
+    100140: MiddleFinger2_L
+    100142: MiddleFinger2_R
+    100144: MiddleFinger3_L
+    100146: MiddleFinger3_L_end
+    100148: MiddleFinger3_L_end_end
+    100150: MiddleFinger3_R
+    100152: MiddleFinger3_R_end
+    100154: MiddleFinger3_R_end_end
+    100156: Neck0
+    100158: Neck1
+    100160: Neck2
+    100162: Neck3
+    100164: PinkyFinger1_L
+    100166: PinkyFinger1_R
+    100168: PinkyFinger2_L
+    100170: PinkyFinger2_R
+    100172: PinkyFinger3_L
+    100174: PinkyFinger3_L_end
+    100176: PinkyFinger3_L_end_end
+    100178: PinkyFinger3_R
+    100180: PinkyFinger3_R_end
+    100182: PinkyFinger3_R_end_end
+    100184: Right ankle
+    100186: Right arm
+    100188: Right elbow
+    100190: Right knee
+    100192: Right leg
+    100194: Right shoulder
+    100196: Right toe
+    100198: Right toe_end
+    100200: Right wrist
+    100202: RingFinger1_L
+    100204: RingFinger1_R
+    100206: RingFinger2_L
+    100208: RingFinger2_R
+    100210: RingFinger3_L
+    100212: RingFinger3_L_end
+    100214: RingFinger3_L_end_end
+    100216: RingFinger3_R
+    100218: RingFinger3_R_end
+    100220: RingFinger3_R_end_end
+    100222: Spine
+    100224: Thumb0_L
+    100226: Thumb0_R
+    100228: Thumb1_L
+    100230: Thumb1_R
+    100232: Thumb2_L
+    100234: Thumb2_L_end
+    100236: Thumb2_L_end_end
+    100238: Thumb2_R
+    100240: Thumb2_R_end
+    100242: Thumb2_R_end_end
+    400000: //RootNode
+    400002: Armature
+    400004: Chest
+    400006: Cloak
+    400008: CloakBack0
+    400010: CloakBack1
+    400012: CloakBack2
+    400014: CloakBack3
+    400016: CloakBack4
+    400018: CloakBack5
+    400020: CloakBack6
+    400022: CloakBack6_end
+    400024: CloakBackL0
+    400026: CloakBackL1
+    400028: CloakBackL2
+    400030: CloakBackL3
+    400032: CloakBackL4
+    400034: CloakBackL5
+    400036: CloakBackL6
+    400038: CloakBackL6_end
+    400040: CloakBackR0
+    400042: CloakBackR1
+    400044: CloakBackR2
+    400046: CloakBackR3
+    400048: CloakBackR4
+    400050: CloakBackR5
+    400052: CloakBackR6
+    400054: CloakBackR6_end
+    400056: CloakRoot
+    400058: CloakWrist0
+    400060: CloakWrist1
+    400062: CloakWrist2
+    400064: CloakWrist2_end
+    400066: FeatherRoot
+    400068: Feathers0
+    400070: Feathers1
+    400072: Feathers2
+    400074: Feathers2_end
+    400076: FeathersL0
+    400078: FeathersL1
+    400080: FeathersL2
+    400082: FeathersL2_end
+    400084: FeathersR0
+    400086: FeathersR1
+    400088: FeathersR2
+    400090: FeathersR2_end
+    400092: Head
+    400094: Head_end
+    400096: Hips
+    400098: IndexFinger1_L
+    400100: IndexFinger1_R
+    400102: IndexFinger2_L
+    400104: IndexFinger2_R
+    400106: IndexFinger3_L
+    400108: IndexFinger3_L_end
+    400110: IndexFinger3_L_end_end
+    400112: IndexFinger3_R
+    400114: IndexFinger3_R_end
+    400116: IndexFinger3_R_end_end
+    400118: Left ankle
+    400120: Left arm
+    400122: Left elbow
+    400124: Left knee
+    400126: Left leg
+    400128: Left shoulder
+    400130: Left toe
+    400132: Left toe_end
+    400134: Left wrist
+    400136: MiddleFinger1_L
+    400138: MiddleFinger1_R
+    400140: MiddleFinger2_L
+    400142: MiddleFinger2_R
+    400144: MiddleFinger3_L
+    400146: MiddleFinger3_L_end
+    400148: MiddleFinger3_L_end_end
+    400150: MiddleFinger3_R
+    400152: MiddleFinger3_R_end
+    400154: MiddleFinger3_R_end_end
+    400156: Neck0
+    400158: Neck1
+    400160: Neck2
+    400162: Neck3
+    400164: PinkyFinger1_L
+    400166: PinkyFinger1_R
+    400168: PinkyFinger2_L
+    400170: PinkyFinger2_R
+    400172: PinkyFinger3_L
+    400174: PinkyFinger3_L_end
+    400176: PinkyFinger3_L_end_end
+    400178: PinkyFinger3_R
+    400180: PinkyFinger3_R_end
+    400182: PinkyFinger3_R_end_end
+    400184: Right ankle
+    400186: Right arm
+    400188: Right elbow
+    400190: Right knee
+    400192: Right leg
+    400194: Right shoulder
+    400196: Right toe
+    400198: Right toe_end
+    400200: Right wrist
+    400202: RingFinger1_L
+    400204: RingFinger1_R
+    400206: RingFinger2_L
+    400208: RingFinger2_R
+    400210: RingFinger3_L
+    400212: RingFinger3_L_end
+    400214: RingFinger3_L_end_end
+    400216: RingFinger3_R
+    400218: RingFinger3_R_end
+    400220: RingFinger3_R_end_end
+    400222: Spine
+    400224: Thumb0_L
+    400226: Thumb0_R
+    400228: Thumb1_L
+    400230: Thumb1_R
+    400232: Thumb2_L
+    400234: Thumb2_L_end
+    400236: Thumb2_L_end_end
+    400238: Thumb2_R
+    400240: Thumb2_R_end
+    400242: Thumb2_R_end_end
+    2100000: Texture
+    4300000: Cloak
+    9500000: //RootNode
+    13700000: Cloak
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
