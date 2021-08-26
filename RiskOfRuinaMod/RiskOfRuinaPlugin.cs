@@ -44,7 +44,7 @@ namespace RiskOfRuinaMod
         //   this shouldn't even have to be said
         public const string MODUID = "com.Scoops.RiskOfRuina";
         public const string MODNAME = "RiskOfRuina";
-        public const string MODVERSION = "1.0.0";
+        public const string MODVERSION = "1.0.4";
 
         // a prefix for name tokens to prevent conflicts- please capitalize all name tokens for convention
         public const string developerPrefix = "COF";
@@ -61,10 +61,12 @@ namespace RiskOfRuinaMod
         public static RiskOfRuinaPlugin instance;
 
         public static bool ancientScepterInstalled = false;
+        public static bool kombatArenaInstalled = false;
 
         public static uint argaliaSkinIndex = 1;
         public bool IsRedMistSelected = false;
         public bool IsArbiterSelected = false;
+        public bool IsBlackSilenceSelected = false;
         public bool IsModCharSelected = false;
         public string CurrentCharacterNameSelected = "";
         public bool songOverride = false;
@@ -78,8 +80,8 @@ namespace RiskOfRuinaMod
             instance = this;
 
             // load assets and read config
-            Modules.Assets.Initialize();
             Modules.Config.ReadConfig();
+            Modules.Assets.Initialize();
             Modules.CameraParams.InitializeParams(); // create camera params for our character to use
             Modules.States.RegisterStates(); // register states for networking
             Modules.Buffs.RegisterBuffs(); // add and register custom buffs/debuffs
@@ -95,19 +97,31 @@ namespace RiskOfRuinaMod
             this.itemManager.items.Add(new LiuBadge());
             this.itemManager.items.Add(new WorkshopAmmo());
             this.itemManager.items.Add(new MoonlightStone());
+            this.itemManager.items.Add(new WeddingRing());
+            this.itemManager.items.Add(new UdjatMask());
+            this.itemManager.items.Add(new Reverberation());
             ItemManager.instance.AddItems(); // register items
+
+            this.itemManager.equips.Add(new BackwardsClock());
+            ItemManager.instance.AddEquips(); // register equips
 
             Modules.ItemDisplays.PopulateDisplays(); // collect item display prefabs for use in our display rules
 
             // survivor initialization
             new Modules.Survivors.RedMist().Initialize();
             new Modules.Survivors.AnArbiter().Initialize();
+            //new Modules.Survivors.BlackSilence().Initialize();
 
             if (BepInEx.Bootstrap.Chainloader.PluginInfos.ContainsKey("com.DestroyedClone.AncientScepter"))
             {
                 ancientScepterInstalled = true;
                 Modules.Skills.ScepterSkillSetup(developerPrefix);
                 ScepterSetup();
+            }
+
+            if (BepInEx.Bootstrap.Chainloader.PluginInfos.ContainsKey("com.Kingpinush.KingKombatArena"))
+            {
+                kombatArenaInstalled = true;
             }
 
             var tmpGo = new GameObject("tmpGo");
@@ -137,6 +151,36 @@ namespace RiskOfRuinaMod
             AncientScepter.AncientScepterItem.instance.RegisterScepterSkill(Skills.scepterShockwaveDef, "ArbiterBody", SkillSlot.Special, 0);
         }
 
+        [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
+        public static bool KombatGamemodeActive()
+        {
+            return NS_KingKombatArena.KingKombatArenaMainPlugin.s_GAME_MODE_ACTIVE;
+        }
+
+        [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
+        public static bool KombatIsDueling(CharacterMaster masterToCheck)
+        {
+            return NS_KingKombatArena.NetworkedGameModeManager.instance.m_currentNetworkedGameModeData.IsCharacterDueling(masterToCheck);
+        }
+
+        [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
+        public static bool KombatIsCharacter(CharacterMaster masterToCheck)
+        {
+            return NS_KingKombatArena.KingKombatArenaMainPlugin.AccessCurrentKombatArenaInstance().GetAllCurrentCharacterMasters().Contains(masterToCheck);
+        }
+
+        [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
+        public static bool KombatIsWaiting(GameObject bodyToCheck)
+        {
+            return NS_KingKombatArena.KingKombatArenaMainPlugin.IsInWaitingArea(bodyToCheck);
+        }
+
+        [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
+        public static int KombatDuelsPlayed(CharacterMaster masterToCheck)
+        {
+            return NS_KingKombatArena.NetworkedGameModeManager.instance.m_currentNetworkedGameModeData.AccessParticipantData(masterToCheck).GetDuelTotal();
+        }
+
         private void Hook()
         {
             if (Modules.Config.snapLevel.Value)
@@ -152,6 +196,19 @@ namespace RiskOfRuinaMod
             On.RoR2.UI.CharacterSelectController.SelectSurvivor += new On.RoR2.UI.CharacterSelectController.hook_SelectSurvivor(this.OnSurvivorSelected_Hook);
             On.RoR2.CharacterBody.OnSkillActivated += CharacterBody_OnSkillActivated;
             DotController.onDotInflictedServerGlobal += new DotController.OnDotInflictedServerGlobalDelegate(DotController_InflictDot);
+            On.RoR2.Run.Start += Run_Start;
+        }
+
+        private void Run_Start(On.RoR2.Run.orig_Start orig, Run self)
+        {
+            // Remove multiplayer-specific items
+            if (RoR2Application.isInSinglePlayer)
+            {
+                ItemDropAPI.RemovePickup(PickupCatalog.FindPickupIndex("RuinaWeddingRing"));
+                
+            }
+
+            orig(self);
         }
 
         private void CharacterBody_OnSkillActivated(On.RoR2.CharacterBody.orig_OnSkillActivated orig, CharacterBody self, GenericSkill skill)
@@ -173,37 +230,44 @@ namespace RiskOfRuinaMod
                         DotController.DotStack stack = selfDotController.dotStackList[i];
                         if (stack.dotIndex == Modules.DoTCore.FairyIndex)
                         {
-                            DamageInfo fairyDamage = new DamageInfo()
+                            DamageInfo fairyDamage;
+
+                            if (stack.attackerObject && stack.attackerObject.GetComponent<CharacterBody>())
                             {
-                                attacker = stack.attackerObject,
-                                inflictor = stack.attackerObject,
-                                crit = false,
-                                damage = stack.attackerObject.GetComponent<CharacterBody>().damage * Modules.StaticValues.fairyDebuffCoefficient,
-                                position = self.corePosition,
-                                force = UnityEngine.Vector3.zero,
-                                damageType = RoR2.DamageType.BypassArmor,
-                                damageColorIndex = RoR2.DamageColorIndex.Bleed,
-                                dotIndex = Modules.DoTCore.FairyIndex,
-                                procCoefficient = 1f
-                            };
+                                fairyDamage = new DamageInfo()
+                                {
+                                    attacker = stack.attackerObject,
+                                    inflictor = stack.attackerObject,
+                                    crit = stack.attackerObject.GetComponent<CharacterBody>().RollCrit(),
+                                    damage = stack.attackerObject.GetComponent<CharacterBody>().damage * Modules.StaticValues.fairyDebuffCoefficient,
+                                    position = self.corePosition,
+                                    force = UnityEngine.Vector3.zero,
+                                    damageType = RoR2.DamageType.Generic,
+                                    damageColorIndex = RoR2.DamageColorIndex.Bleed,
+                                    dotIndex = Modules.DoTCore.FairyIndex,
+                                    procCoefficient = 0.75f
+                                };
+                            } else  // attacker is dead? Need to do generic damage
+                            {
+                                fairyDamage = new DamageInfo()
+                                {
+                                    attacker = stack.attackerObject,
+                                    inflictor = stack.attackerObject,
+                                    crit = false,
+                                    damage = 1f * Modules.StaticValues.fairyDebuffCoefficient,
+                                    position = self.corePosition,
+                                    force = UnityEngine.Vector3.zero,
+                                    damageType = RoR2.DamageType.Generic,
+                                    damageColorIndex = RoR2.DamageColorIndex.Bleed,
+                                    dotIndex = Modules.DoTCore.FairyIndex,
+                                    procCoefficient = 0.75f
+                                };
+                            }
 
                             self.healthComponent.TakeDamage(fairyDamage);
 
                             GlobalEventManager.instance.OnHitEnemy(fairyDamage, self.healthComponent.body.gameObject);
                             GlobalEventManager.instance.OnHitAll(fairyDamage, self.healthComponent.body.gameObject);
-                        }
-                    }
-
-                    for (int i = selfDotController.dotStackList.Count - 1; i >= 0; i--)
-                    {
-                        DotController.DotStack stack = selfDotController.dotStackList[i];
-                        if (stack.dotIndex == Modules.DoTCore.FairyIndex)
-                        {
-                            if (stacksRemoved < stacksToRemove)
-                            {
-                                selfDotController.RemoveDotStackAtServer(i);
-                                stacksRemoved++;
-                            }
                         }
                     }
 
@@ -224,7 +288,8 @@ namespace RiskOfRuinaMod
             {
                 this.IsRedMistSelected = survivorDef.cachedName == "RedMist";
                 this.IsArbiterSelected = survivorDef.cachedName == "Arbiter";
-                this.IsModCharSelected = IsArbiterSelected || IsRedMistSelected;
+                this.IsBlackSilenceSelected = survivorDef.cachedName == "BlackSilence";
+                this.IsModCharSelected = IsArbiterSelected || IsRedMistSelected || IsBlackSilenceSelected;
             }
             this.CurrentCharacterNameSelected = survivorDef.cachedName;
         }
@@ -363,8 +428,19 @@ namespace RiskOfRuinaMod
                 RedMistEmotionComponent emoComponent = self.GetComponent<RedMistEmotionComponent>();
                 if (statTracker && emoComponent)
                 {
-                    self.moveSpeed = statTracker.CalculateMoveSpeed(self.moveSpeed);
-                    self.attackSpeed = statTracker.CalculateAttackSpeed(self.attackSpeed);
+                    float newMoveSpeed = self.moveSpeed;
+                    float newAttackSpeed = self.attackSpeed;
+
+                    self.moveSpeed = self.baseMoveSpeed; //statTracker.CalculateMoveSpeed(self.moveSpeed);
+                    self.attackSpeed = self.baseAttackSpeed; //statTracker.CalculateAttackSpeed(self.attackSpeed);
+
+                    float buffDamage = (Modules.Config.redMistBuffDamage.Value * (float)self.GetBuffCount(Buffs.RedMistBuff) * self.baseDamage);
+                    self.damage += buffDamage;
+                    Debug.Log("Currently gaining " + buffDamage + " total damage, which should be " + (Modules.Config.redMistBuffDamage.Value * (float)self.GetBuffCount(Buffs.RedMistBuff)) + "% of base.");
+
+                    float speedDamage = (Modules.Config.redMistBuffDamage.Value * (float)self.GetBuffCount(Buffs.RedMistBuff) * self.baseDamage);
+                    self.damage += buffDamage;
+                    Debug.Log("Currently gaining " + buffDamage + " total damage, which should be " + (Modules.Config.redMistBuffDamage.Value * (float)self.GetBuffCount(Buffs.RedMistBuff)) + "% of base.");
 
                     float sprintBonus = 0f;
                     float OOCsprintBonus = 0f;
@@ -386,12 +462,11 @@ namespace RiskOfRuinaMod
                             self.RemoveBuff(Buffs.EGOBuff);
                         }
                         self.armor += 50f;
-                        self.moveSpeed += 2f;
                         self.sprintingSpeedMultiplier = 2.2f;
                     }
                     else
                     {
-                        self.sprintingSpeedMultiplier = 1.6f;
+                        self.sprintingSpeedMultiplier = 1.5f;
                     }
 
                     self.sprintingSpeedMultiplier += sprintBonus;
@@ -411,6 +486,11 @@ namespace RiskOfRuinaMod
 
         private void GlobalEvent_OnHitEnemy(On.RoR2.GlobalEventManager.orig_OnHitEnemy orig, GlobalEventManager self, DamageInfo damageInfo, UnityEngine.GameObject victim)
         {
+            if (NetworkServer.active)
+            {
+                RiskOfRuinaNetworkManager.OnHit(self, damageInfo, victim);
+            }
+
             GameObject attacker = damageInfo.attacker;
 
             if (self && attacker)
@@ -425,14 +505,34 @@ namespace RiskOfRuinaMod
                         RedMistEmotionComponent emoTracker = component.GetComponent<RedMistEmotionComponent>();
                         if (statTracker && emoTracker)
                         {
-                            float trueDamage = component.damage + (statTracker.DifferenceAttackSpeed * Modules.Config.attackSpeedMult.Value) + (statTracker.DifferenceMoveSpeed * Modules.Config.moveSpeedMult.Value);
+                            float trueDamage = component.damage;
                             float calcCoefficient = Mathf.Clamp(damageInfo.damage / trueDamage, 0f, StaticValues.onrushDamageCoefficient);
                             float calcMult = (((float)RoR2.Run.instance.stageClearCount) / ((float)RoR2.Run.instance.stageClearCount + 1f));
+                            if (kombatArenaInstalled)
+                            {
+                                if (RiskOfRuinaPlugin.KombatGamemodeActive() && component.master)
+                                {
+                                    calcMult = (((float)RiskOfRuinaPlugin.KombatDuelsPlayed(component.master)) / ((float)RiskOfRuinaPlugin.KombatDuelsPlayed(component.master) + 1f));
+                                }
+                            }
                             float emotion = calcCoefficient * Modules.Config.emotionRatio.Value;
                             
                             float enemyValueMult = 1f;
                             if (component2.isElite) enemyValueMult = 1.2f;
                             if (component2.isBoss) enemyValueMult = 1.4f;
+                            if (kombatArenaInstalled)
+                            {
+                                if (RiskOfRuinaPlugin.KombatGamemodeActive())
+                                {
+                                    if (component2.master && KombatIsCharacter(component2.master))
+                                    {
+                                        enemyValueMult = StaticValues.egoPVPCharacterMod;
+                                    } else
+                                    {
+                                        enemyValueMult = StaticValues.egoPVPMonsterMod;
+                                    }
+                                }
+                            }
 
                             emoTracker.AddEmotion((emotion + (emotion * calcMult)) * enemyValueMult);
                         }
@@ -446,7 +546,7 @@ namespace RiskOfRuinaMod
                             inflictDotInfo.attackerObject = damageInfo.attacker;
                             inflictDotInfo.victimObject = victim;
                             inflictDotInfo.dotIndex = Modules.DoTCore.FairyIndex;
-                            inflictDotInfo.duration = 20f;
+                            inflictDotInfo.duration = 10f;
                             inflictDotInfo.damageMultiplier = 0;
                             InflictDotInfo inflictDotInfo2 = inflictDotInfo;
                             DotController.InflictDot(ref inflictDotInfo2);
@@ -487,19 +587,20 @@ namespace RiskOfRuinaMod
                         }
                     }
                 }
+            }
 
-                if (damageReport.victimBody.baseNameToken == RiskOfRuinaPlugin.developerPrefix + "_REDMIST_BODY_NAME" || damageReport.victimBody.baseNameToken == RiskOfRuinaPlugin.developerPrefix + "_ARBITER_BODY_NAME")
+            if (damageReport.victimBody.baseNameToken == RiskOfRuinaPlugin.developerPrefix + "_REDMIST_BODY_NAME" || damageReport.victimBody.baseNameToken == RiskOfRuinaPlugin.developerPrefix + "_ARBITER_BODY_NAME" || damageReport.victimBody.baseNameToken == RiskOfRuinaPlugin.developerPrefix + "_BLACKSILENCE_BODY_NAME")
+            {
+                EffectData effectData = new EffectData();
+                effectData.origin = damageReport.victimBody.corePosition;
+                effectData.scale = 1;
+                EffectManager.SpawnEffect(Assets.pagePoof, effectData, true);
+                if (NetworkServer.active)
                 {
-                    EffectData effectData = new EffectData();
-                    effectData.origin = damageReport.victimBody.corePosition;
-                    effectData.scale = 1;
-                    EffectManager.SpawnEffect(Assets.pagePoof, effectData, true);
-                    if (NetworkServer.active)
-                    {
-                        RiskOfRuinaNetworkManager.SetInvisible(damageReport.victimBody.gameObject);
-                    }
+                    RiskOfRuinaNetworkManager.SetInvisible(damageReport.victimBody.gameObject);
                 }
             }
+
             orig.Invoke(self, damageReport);
         }
 

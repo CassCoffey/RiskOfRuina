@@ -15,6 +15,7 @@ namespace RiskOfRuinaMod.SkillStates
     public class Onrush : BaseSkillState
     {
         public bool chained = false;
+        public int chainNum = 0;
         public bool autoAim = false;
 
         private float startTime;
@@ -57,7 +58,7 @@ namespace RiskOfRuinaMod.SkillStates
 
         protected float trueDamage
         {
-            get { return (1.0f + (Config.redMistBuffDamage.Value * (float)this.characterBody.GetBuffCount(Modules.Buffs.RedMistBuff))) * (this.damageStat + (this.GetComponent<RedMistStatTracker>().DifferenceAttackSpeed * Config.attackSpeedMult.Value) + (this.GetComponent<RedMistStatTracker>().DifferenceMoveSpeed * Config.moveSpeedMult.Value)); }
+            get { return (1.0f + (Config.redMistBuffDamage.Value * (float)this.characterBody.GetBuffCount(Modules.Buffs.RedMistBuff))) * (this.damageStat); }
         }
 
 
@@ -82,6 +83,13 @@ namespace RiskOfRuinaMod.SkillStates
                 search.FilterCandidatesByDistinctHurtBoxEntities();
                 TeamMask mask = TeamMask.GetEnemyTeams(base.teamComponent.teamIndex);
                 mask.RemoveTeam(TeamIndex.Neutral);
+                if (RiskOfRuinaPlugin.kombatArenaInstalled)
+                {
+                    if (RiskOfRuinaPlugin.KombatGamemodeActive())
+                    {
+                        mask.AddTeam(TeamIndex.Neutral);
+                    }
+                }
                 search.FilterCandidatesByHurtBoxTeam(mask);
                 search.OrderCandidatesByDistance();
                 search.GetHurtBoxes(candidates);
@@ -138,8 +146,15 @@ namespace RiskOfRuinaMod.SkillStates
 
             if (chained)
             {
+                base.cameraTargetParams.cameraParams = Modules.CameraParams.HorizontalSlashCameraParamsRedMist;
+                base.cameraTargetParams.aimMode = CameraTargetParams.AimType.Aura;
+
                 startTime = 0.0f;
                 firstDash = false;
+                if (chainNum > 5)
+                {
+                    lungeDuration = 0.2f;
+                }
                 if (NetworkServer.active) base.characterBody.AddBuff(RoR2Content.Buffs.HiddenInvincibility);
                 if (emotionComponent.inEGO)
                 {
@@ -196,6 +211,9 @@ namespace RiskOfRuinaMod.SkillStates
             {
                 base.characterBody.RemoveBuff(RoR2Content.Buffs.HiddenInvincibility);
             }
+
+            base.cameraTargetParams.cameraParams = Modules.CameraParams.defaultCameraParamsRedMist;
+            base.cameraTargetParams.aimMode = CameraTargetParams.AimType.Standard;
 
             base.OnExit();
         }
@@ -393,6 +411,14 @@ namespace RiskOfRuinaMod.SkillStates
             float speed = 10f;
             if (emotionComponent.inEGO) speed = 12f;
 
+            if (chainNum > 6)
+            {
+                speed = 20f;
+            } else if (chainNum >= 3)
+            {
+                speed = 16f;
+            }
+
             base.characterMotor.rootMotion += dirToTarget * trueMoveSpeed * speed * Time.fixedDeltaTime;
             base.characterMotor.velocity = Vector3.zero;
             base.characterDirection.forward = dirToTarget;
@@ -482,6 +508,7 @@ namespace RiskOfRuinaMod.SkillStates
                     this.outer.SetNextState(new Onrush
                     {
                         chained = true,
+                        chainNum = chainNum + 1,
                         autoAim = true
                     });
                     return;

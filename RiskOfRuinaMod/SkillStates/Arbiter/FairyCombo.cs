@@ -27,7 +27,7 @@ namespace RiskOfRuinaMod.SkillStates
             this.hitHopVelocity = 4f;
 
             this.swingSoundString = "Ruina_Swipe";
-            this.impactSound = Modules.Assets.fairyHitSound.index;
+            this.impactSound = RoR2.Audio.NetworkSoundEventIndex.Invalid;
             this.muzzleString = swingIndex % 2 == 0 ? "SwingLeft" : "SwingRight";
             this.swingEffectPrefab = Modules.Assets.armSwingEffect;
             this.hitEffectPrefab = Modules.Assets.fairyHitEffect;

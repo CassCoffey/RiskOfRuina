@@ -68,7 +68,7 @@ namespace RiskOfRuinaMod.SkillStates.BaseStates
 
         protected float trueDamage
         {
-            get { return (1.0f + (Config.redMistBuffDamage.Value * (float)this.characterBody.GetBuffCount(Modules.Buffs.RedMistBuff))) * (this.damageStat + (this.GetComponent<RedMistStatTracker>().DifferenceAttackSpeed * Config.attackSpeedMult.Value) + (this.GetComponent<RedMistStatTracker>().DifferenceMoveSpeed * Config.moveSpeedMult.Value)); }
+            get { return (1.0f + (Config.redMistBuffDamage.Value * (float)this.characterBody.GetBuffCount(Modules.Buffs.RedMistBuff))) * (this.damageStat); }
         }
 
 

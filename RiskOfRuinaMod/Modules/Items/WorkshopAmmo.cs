@@ -26,8 +26,8 @@ namespace RiskOfRuinaMod.Modules.Items
             itemDef = ScriptableObject.CreateInstance<ItemDef>();
             itemDef.name = itemName;
             itemDef.tier = ItemTier.Tier2;
-            itemDef.pickupModelPrefab = Assets.arbiterTrophy;
-            itemDef.pickupIconSprite = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texRedMistUtilityIcon");
+            itemDef.pickupModelPrefab = Assets.workshopAmmo;
+            itemDef.pickupIconSprite = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texIconPickupRuinaWorkshopAmmo");
             itemDef.nameToken = itemName.ToUpper() + "_NAME";
             itemDef.pickupToken = itemName.ToUpper() + "_PICKUP";
             itemDef.descriptionToken = itemName.ToUpper() + "_DESC";
@@ -46,18 +46,18 @@ namespace RiskOfRuinaMod.Modules.Items
 
         public override void HookSetup()
         {
-            On.RoR2.GlobalEventManager.OnHitEnemy += GlobalEvent_OnHitEnemy;
+            On.RoR2.HealthComponent.TakeDamage += HealthComponent_TakeDamage;
         }
 
-        private void GlobalEvent_OnHitEnemy(On.RoR2.GlobalEventManager.orig_OnHitEnemy orig, GlobalEventManager self, DamageInfo damageInfo, UnityEngine.GameObject victim)
+        private void HealthComponent_TakeDamage(On.RoR2.HealthComponent.orig_TakeDamage orig, HealthComponent self, DamageInfo damageInfo)
         {
             GameObject attacker = damageInfo.attacker;
 
             if (self && attacker)
             {
                 CharacterBody attackerBody = attacker.GetComponent<CharacterBody>();
-                CharacterBody victimBody = victim.GetComponent<CharacterBody>();
-                if (attackerBody.teamComponent.teamIndex != victimBody.teamComponent.teamIndex)
+                CharacterBody victimBody = self.GetComponent<CharacterBody>();
+                if (victimBody && attackerBody && attackerBody.teamComponent.teamIndex != victimBody.teamComponent.teamIndex)
                 {
                     CharacterMaster master = attackerBody.master;
                     if (master)
@@ -74,20 +74,8 @@ namespace RiskOfRuinaMod.Modules.Items
                                     float stackCalc = (damageIncrease + (stackIncrease * (float)(count - 1)));
                                     float bonus = Mathf.Clamp(Mathf.Lerp(0f, stackCalc, (distance - 10f) / 100f), 0f, stackCalc);
 
-                                    DamageInfo bonusDamage = new DamageInfo()
-                                    {
-                                        attacker = damageInfo.attacker,
-                                        inflictor = damageInfo.inflictor,
-                                        crit = damageInfo.crit,
-                                        damage = damageInfo.damage * bonus,
-                                        position = damageInfo.position,
-                                        force = UnityEngine.Vector3.zero,
-                                        damageType = DamageType.Generic,
-                                        damageColorIndex = RoR2.DamageColorIndex.Default,
-                                        procCoefficient = 0f,
-                                    };
-
-                                    victimBody.healthComponent.TakeDamage(bonusDamage);
+                                    damageInfo.damage += damageInfo.damage * bonus;
+                                    damageInfo.damageColorIndex = DamageColorIndex.Nearby;
                                 }
                             }
                         }
@@ -95,7 +83,7 @@ namespace RiskOfRuinaMod.Modules.Items
                 }
             }
 
-            orig(self, damageInfo, victim);
+            orig(self, damageInfo);
         }
     }
 }

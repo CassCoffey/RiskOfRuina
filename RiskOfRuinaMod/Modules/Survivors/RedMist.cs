@@ -46,16 +46,16 @@ namespace RiskOfRuinaMod.Modules.Survivors
             bodyColor = Color.red,
             characterPortrait = Modules.Assets.LoadCharacterIcon("RedMist"),
             crosshair = Modules.Assets.LoadCrosshair("SimpleDot"),
-            damage = 15f,
+            damage = 12f,
             healthGrowth = 33f,
-            healthRegen = 1.5f,
+            healthRegen = 1f,
             jumpCount = 2,
             maxHealth = 110f,
             subtitleNameToken = RiskOfRuinaPlugin.developerPrefix + "_REDMIST_BODY_SUBTITLE",
             podPrefab = Resources.Load<GameObject>("Prefabs/NetworkedObjects/SurvivorPod"),
             moveSpeed = StaticValues.originalMoveSpeed,
             attackSpeed = StaticValues.originalAttackSpeed,
-            sprintSpeedMult = 1.6f
+            sprintSpeedMult = 1.5f
         };
 
         internal static Material redMistMat = Modules.Assets.CreateMaterial("matRedMist", 1f, Color.red, 1.0f);
@@ -97,6 +97,33 @@ namespace RiskOfRuinaMod.Modules.Survivors
 
         internal override void InitializeCharacter()
         {
+            if (!Config.redMistCoatShader.Value)
+            {
+                coatEGOMat = Modules.Assets.CreateMaterial("matCoatEGO", 0f, Color.red, 1.0f);
+
+                customRendererInfos = new CustomRendererInfo[] {
+                new CustomRendererInfo
+                {
+                    childName = "CoatNormal",
+                    material = coatMat
+                },
+                new CustomRendererInfo
+                {
+                    childName = "CoatEGO",
+                    material = coatEGOMat
+                },
+                new CustomRendererInfo
+                {
+                    childName = "Mimicry",
+                    material = mimicryMat
+                },
+                new CustomRendererInfo
+                {
+                    childName = "Model",
+                    material = redMistMat
+                }};
+            }
+
             base.InitializeCharacter();
 
             redMistPrefab = bodyPrefab;
@@ -114,7 +141,7 @@ namespace RiskOfRuinaMod.Modules.Survivors
 
         internal override void InitializeDoppelganger()
         {
-            base.InitializeDoppelganger();
+            Modules.Prefabs.CreateGenericDoppelganger(instance.bodyPrefab, bodyName + "MonsterMaster", "Loader");
         }
 
         internal override void InitializeHitboxes()
@@ -235,7 +262,31 @@ namespace RiskOfRuinaMod.Modules.Survivors
                 stockToConsume = 0,
             });
 
-            Modules.Skills.AddUtilitySkills(bodyPrefab, NormalDodge);
+            NormalBlock = Modules.Skills.CreateSkillDef(new SkillDefInfo
+            {
+                skillName = prefix + "_REDMIST_BODY_UTILITY_BLOCK_NAME",
+                skillNameToken = prefix + "_REDMIST_BODY_UTILITY_BLOCK_NAME",
+                skillDescriptionToken = prefix + "_REDMIST_BODY_UTILITY_BLOCK_DESCRIPTION",
+                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texRedMistUtilityTwoIcon"),
+                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.Block)),
+                activationStateMachineName = "Body",
+                baseMaxStock = 1,
+                baseRechargeInterval = 0,
+                beginSkillCooldownOnSkillEnd = false,
+                canceledFromSprinting = false,
+                forceSprintDuringState = false,
+                fullRestockOnAssign = true,
+                interruptPriority = EntityStates.InterruptPriority.PrioritySkill,
+                resetCooldownTimerOnUse = false,
+                isCombatSkill = true,
+                mustKeyPress = false,
+                cancelSprintingOnActivation = true,
+                rechargeStock = 1,
+                requiredStock = 0,
+                stockToConsume = 0,
+            });
+
+            Modules.Skills.AddUtilitySkills(bodyPrefab, NormalDodge, NormalBlock);
 
             EGODodge = Modules.Skills.CreateSkillDef(new SkillDefInfo
             {
@@ -263,38 +314,12 @@ namespace RiskOfRuinaMod.Modules.Survivors
 
             Skills.skillDefs.Add(EGODodge);
 
-            NormalBlock = Modules.Skills.CreateSkillDef(new SkillDefInfo
-            {
-                skillName = prefix + "_REDMIST_BODY_UTILITY_BLOCK_NAME",
-                skillNameToken = prefix + "_REDMIST_BODY_UTILITY_BLOCK_NAME",
-                skillDescriptionToken = prefix + "_REDMIST_BODY_UTILITY_BLOCK_DESCRIPTION",
-                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texRedMistUtilityIcon"),
-                activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.Block)),
-                activationStateMachineName = "Body",
-                baseMaxStock = 1,
-                baseRechargeInterval = 0,
-                beginSkillCooldownOnSkillEnd = false,
-                canceledFromSprinting = false,
-                forceSprintDuringState = false,
-                fullRestockOnAssign = true,
-                interruptPriority = EntityStates.InterruptPriority.PrioritySkill,
-                resetCooldownTimerOnUse = false,
-                isCombatSkill = true,
-                mustKeyPress = false,
-                cancelSprintingOnActivation = true,
-                rechargeStock = 1,
-                requiredStock = 0,
-                stockToConsume = 0,
-            });
-
-            Modules.Skills.AddUtilitySkills(bodyPrefab, NormalBlock);
-
             EGOBlock = Modules.Skills.CreateSkillDef(new SkillDefInfo
             {
                 skillName = prefix + "_REDMIST_BODY_UTILITY_BLOCK_NAME",
                 skillNameToken = prefix + "_REDMIST_BODY_UTILITY_BLOCK_NAME",
                 skillDescriptionToken = prefix + "_REDMIST_BODY_UTILITY_BLOCK_DESCRIPTION",
-                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texRedMistUtilityIcon"),
+                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texRedMistUtilityTwoIcon"),
                 activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.EGOBlock)),
                 activationStateMachineName = "Slide",
                 baseMaxStock = 1,
@@ -339,7 +364,11 @@ namespace RiskOfRuinaMod.Modules.Survivors
                 cancelSprintingOnActivation = true,
                 rechargeStock = 100,
                 requiredStock = 0,
-                stockToConsume = 0
+                stockToConsume = 0,
+                keywordTokens = new string[]
+                {
+                    "KEYWORD_EGO"
+                }
             });
 
             Modules.Skills.AddSpecialSkills(bodyPrefab, EGOActivate);

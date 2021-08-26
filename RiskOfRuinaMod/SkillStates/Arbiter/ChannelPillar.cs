@@ -12,6 +12,7 @@ namespace RiskOfRuinaMod.SkillStates
             this.maxSpellRadius = Modules.StaticValues.pillarRadius;
             this.baseDuration = 0.25f * Modules.StaticValues.pillarChannelDuration;
             this.zooming = false;
+            this.line = true;
 
             base.OnEnter();
         }

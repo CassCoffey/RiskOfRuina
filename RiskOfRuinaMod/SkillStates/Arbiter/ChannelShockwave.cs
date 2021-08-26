@@ -15,8 +15,8 @@ namespace RiskOfRuinaMod.SkillStates
         {
             this.chargeEffectPrefab = null;
             this.maxSpellRadius = Modules.StaticValues.shockwaveMinRadius;
-            this.baseDuration = 0.25f * StaticValues.shockwaveChannelDuration;
-            this.zooming = false;
+            this.baseDuration = StaticValues.shockwaveChannelDuration;
+            this.zooming = true;
             this.centered = true;
 
             base.OnEnter();

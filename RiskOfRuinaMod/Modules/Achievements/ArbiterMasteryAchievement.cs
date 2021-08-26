@@ -12,7 +12,7 @@ namespace RiskOfRuinaMod.Modules.Achievements
         public override string PrerequisiteUnlockableIdentifier { get; } = RiskOfRuinaPlugin.developerPrefix + "_ARBITER_BODY_UNLOCKABLE_REWARD_ID";
         public override string UnlockableNameToken { get; } = RiskOfRuinaPlugin.developerPrefix + "_ARBITER_BODY_MASTERYUNLOCKABLE_UNLOCKABLE_NAME";
         public override string AchievementDescToken { get; } = RiskOfRuinaPlugin.developerPrefix + "_ARBITER_BODY_MASTERYUNLOCKABLE_ACHIEVEMENT_DESC";
-        public override Sprite Sprite { get; } = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texMasteryAchievement");
+        public override Sprite Sprite { get; } = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texArbiterMasterySkin");
 
         public override Func<string> GetHowToUnlock { get; } = (() => Language.GetStringFormatted("UNLOCK_VIA_ACHIEVEMENT_FORMAT", new object[]
                             {
@@ -27,7 +27,7 @@ namespace RiskOfRuinaMod.Modules.Achievements
 
         public override BodyIndex LookUpRequiredBodyIndex()
         {
-            return BodyCatalog.FindBodyIndex(Modules.Survivors.AnArbiter.instance.fullBodyName);
+            return BodyCatalog.FindBodyIndex("Arbiter" + "Body");
         }
 
         public void ClearCheck(Run run, RunReport runReport)

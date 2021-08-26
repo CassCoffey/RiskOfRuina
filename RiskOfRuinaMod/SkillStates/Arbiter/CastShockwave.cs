@@ -11,6 +11,8 @@ namespace RiskOfRuinaMod.SkillStates
         private Vector3 storedPosition;
         private int shockwaveNum = 0;
 
+        private ShakeEmitter shakeEmitter;
+
         public override void OnEnter()
         {
             this.baseDuration = 3.5f;
@@ -36,6 +38,19 @@ namespace RiskOfRuinaMod.SkillStates
         protected override void Fire()
         {
             if (projectilePrefabs.Count <= 0) return;
+
+            shakeEmitter = base.gameObject.AddComponent<ShakeEmitter>();
+            shakeEmitter.amplitudeTimeDecay = true;
+            shakeEmitter.duration = 1.5f;
+            shakeEmitter.radius = 100f;
+            shakeEmitter.scaleShakeRadiusWithLocalScale = false;
+
+            shakeEmitter.wave = new Wave
+            {
+                amplitude = 0.1f,
+                frequency = 10f,
+                cycleOffset = 0f
+            };
 
             float radius = StaticValues.shockwaveMinRadius;
             if (shockwaveNum == 1) radius = StaticValues.shockwaveMinRadius + ((StaticValues.shockwaveMaxRadius - StaticValues.shockwaveMinRadius) / 2f);

@@ -31,9 +31,15 @@ namespace RiskOfRuinaMod.Modules
 
         internal const float horizontalDamageCoefficient = 20.0f;
 
+        internal const float utilityPVPDebuff = 0.2f;
+        internal const float counterPVPBoost = 5f;
+
+        internal const float egoPVPMonsterMod = 0.75f;
+        internal const float egoPVPCharacterMod = 7.5f;
+
 
         // Arbiter
-        internal const float fairyDebuffCoefficient = 1.5f;
+        internal const float fairyDebuffCoefficient = 1.0f;
 
         internal const float fairyDamageCoefficient = 0.75f;
 
@@ -41,14 +47,15 @@ namespace RiskOfRuinaMod.Modules
 
         internal const float shockwaveMinDamageCoefficient = 5f;
         internal const float shockwaveMaxDamageCoefficient = 15f;
-        internal const float shockwaveScepterDamageCoefficient = 40f;
+        internal const float shockwaveScepterDamageCoefficient = 50f;
         internal const float shockwaveMinRadius = 40f;
         internal const float shockwaveMaxRadius = 40f;
-        internal const float shockwaveScepterRadius = 50f;
-        internal const float shockwaveMinBarrier = 0.4f;
-        internal const float shockwaveMaxBarrier = 0.5f;
+        internal const float shockwaveScepterRadius = 60f;
+        internal const float shockwaveMinBarrier = 0.3f;
+        internal const float shockwaveMaxBarrier = 0.3f;
         internal const float shockwaveScepterBarrier = 0.5f;
-        internal const float shockwaveChannelDuration = 1.5f;
+        internal const float shockwaveChannelDuration = 0.4f;
+        internal const float shockwaveScepterChannelDuration = 1f;
 
         internal const float feebleArmorDamageAmount = 0.5f;
         internal const float feebleDamageDamageAmount = 0.5f;

@@ -21,6 +21,15 @@ namespace RiskOfRuinaMod.Modules
 
         // items
         internal static GameObject arbiterTrophy;
+        internal static GameObject blackTea;
+        internal static GameObject backwardsClock;
+        internal static GameObject moonlightStone;
+        internal static GameObject prescript;
+        internal static GameObject liuBadge;
+        internal static GameObject udjatMask;
+        internal static GameObject workshopAmmo;
+        internal static GameObject weddingRing;
+        internal static GameObject reverberation;
 
         // projectile ghosts
         internal static GameObject fairyTrail;
@@ -172,6 +181,15 @@ namespace RiskOfRuinaMod.Modules
             }
 
             arbiterTrophy = mainAssetBundle.LoadAsset<GameObject>("mdlRedMistArm");
+            liuBadge = mainAssetBundle.LoadAsset<GameObject>("mdlLiuBadge");
+            moonlightStone = mainAssetBundle.LoadAsset<GameObject>("mdlMoonlightStone");
+            prescript = mainAssetBundle.LoadAsset<GameObject>("mdlPrescript");
+            blackTea = mainAssetBundle.LoadAsset<GameObject>("mdlTeaCup");
+            udjatMask = mainAssetBundle.LoadAsset<GameObject>("mdlUdjatMask");
+            workshopAmmo = mainAssetBundle.LoadAsset<GameObject>("mdlWorkshopAmmo");
+            weddingRing = mainAssetBundle.LoadAsset<GameObject>("mdlWeddingRing");
+            backwardsClock = mainAssetBundle.LoadAsset<GameObject>("mdlBackwardsClock");
+            reverberation = mainAssetBundle.LoadAsset<GameObject>("mdlReverberation");
 
 
             // Red Mist Assets
@@ -189,11 +207,6 @@ namespace RiskOfRuinaMod.Modules
             blockEffect = LoadEffect("BlockEffect");
             counterBurst = LoadEffect("CounterBurst");
 
-            afterimageSlash = LoadEffect("RedMistAfterimageSwing", "Play_Kali_EGO_Hori");
-            afterimageSlash.AddComponent<DestroyOnTimer>().duration = 0.75f;
-            afterimageBlock = LoadEffect("RedMistAfterimageBlock", true);
-            afterimageBlock.AddComponent<DestroyOnTimer>().duration = 0.5f;
-
             argaliaSwordSwingEffect = LoadEffect("ArgaliaSwordSwing", true);
             argaliaEGOSwordSwingEffect = LoadEffect("ArgaliaEGOSwordSwing", true);
             argaliaSpearPierceEffect = LoadEffect("ArgaliaSpearPierce", true);
@@ -205,10 +218,31 @@ namespace RiskOfRuinaMod.Modules
             argaliaGroundPoundEffect = LoadEffect("ArgaliaGroundPound");
             argaliaCounterBurst = LoadEffect("ArgaliaCounterBurst");
 
-            argaliaAfterimageSlash = LoadEffect("ArgaliaAfterimageSwing", "Play_Kali_EGO_Hori");
-            argaliaAfterimageSlash.AddComponent<DestroyOnTimer>().duration = 0.75f;
-            argaliaAfterimageBlock = LoadEffect("ArgaliaAfterimageBlock", true);
-            argaliaAfterimageBlock.AddComponent<DestroyOnTimer>().duration = 0.5f;
+            if (Config.redMistCoatShader.Value)
+            {
+                afterimageSlash = LoadEffect("RedMistAfterimageSwing", "Play_Kali_EGO_Hori");
+                afterimageSlash.AddComponent<DestroyOnTimer>().duration = 0.75f;
+                afterimageBlock = LoadEffect("RedMistAfterimageBlock", true);
+                afterimageBlock.AddComponent<DestroyOnTimer>().duration = 0.5f;
+
+                argaliaAfterimageSlash = LoadEffect("ArgaliaAfterimageSwing", "Play_Kali_EGO_Hori");
+                argaliaAfterimageSlash.AddComponent<DestroyOnTimer>().duration = 0.75f;
+                argaliaAfterimageBlock = LoadEffect("ArgaliaAfterimageBlock", true);
+                argaliaAfterimageBlock.AddComponent<DestroyOnTimer>().duration = 0.5f;
+            } else
+            {
+                afterimageSlash = LoadEffect("RedMistAfterimageSwingFallback", "Play_Kali_EGO_Hori");
+                afterimageSlash.AddComponent<DestroyOnTimer>().duration = 0.75f;
+                afterimageBlock = LoadEffect("RedMistAfterimageBlockFallback", true);
+                afterimageBlock.AddComponent<DestroyOnTimer>().duration = 0.5f;
+
+                argaliaAfterimageSlash = LoadEffect("ArgaliaAfterimageSwingFallback", "Play_Kali_EGO_Hori");
+                argaliaAfterimageSlash.AddComponent<DestroyOnTimer>().duration = 0.75f;
+                argaliaAfterimageBlock = LoadEffect("ArgaliaAfterimageBlockFallback", true);
+                argaliaAfterimageBlock.AddComponent<DestroyOnTimer>().duration = 0.5f;
+            }
+
+                
 
             phaseEffect = LoadEffect("PhaseEffect"); 
             argaliaPhaseEffect = LoadEffect("ArgaliaPhaseEffect");
@@ -233,7 +267,13 @@ namespace RiskOfRuinaMod.Modules
 
             armSwingEffect = Assets.LoadEffect("ArbiterArmSwingEffect", true);
             fairyProcEffect = LoadEffect("FairyProcEffect", "Play_Effect_Stun");
-            fairyExplodeEffect = LoadEffect("FairyExplodeEffect", "Play_Binah_Fairy");
+            if (Config.arbiterSound.Value)
+            {
+                fairyExplodeEffect = LoadEffect("FairyExplodeEffect", "Play_Binah_Fairy");
+            } else
+            {
+                fairyExplodeEffect = LoadEffect("FairyExplodeEffect", "Play_Effect_Stun");
+            }
             fairyHitEffect = LoadEffect("FairyHitEffect");
             fairyDeleteEffect = LoadEffect("FairyDeleteEffect", "Play_Effect_Stun");
             lockEffect5s = LoadEffect("LockEffect5s", "Play_Binah_Lock");

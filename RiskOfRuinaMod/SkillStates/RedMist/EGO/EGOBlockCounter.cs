@@ -22,6 +22,7 @@ namespace RiskOfRuinaMod.SkillStates
         public bool fired = false;
 
         public float damageCounter = 0f;
+        public float bonusMult = 1f;
 
         private Transform modelTransform;
         private CharacterModel characterModel;
@@ -91,7 +92,7 @@ namespace RiskOfRuinaMod.SkillStates
                 search.RefreshCandidates();
                 search.FilterCandidatesByDistinctHurtBoxEntities();
                 TeamMask mask = TeamMask.GetEnemyTeams(base.teamComponent.teamIndex);
-                mask.RemoveTeam(TeamIndex.Neutral);
+                //mask.RemoveTeam(TeamIndex.Neutral);
                 search.FilterCandidatesByHurtBoxTeam(mask);
                 search.GetHurtBoxes(candidates);
 
@@ -104,7 +105,7 @@ namespace RiskOfRuinaMod.SkillStates
 
                 foreach (HurtBox target in candidates)
                 {
-                    if (target.healthComponent && target.healthComponent.body)
+                    if (target.healthComponent && target.healthComponent.body && target.healthComponent.body != this.characterBody)
                     {
                         DelayedDamage(target);
                     }
@@ -147,7 +148,7 @@ namespace RiskOfRuinaMod.SkillStates
                     attacker = base.characterBody.gameObject,
                     inflictor = base.characterBody.gameObject,
                     crit = base.RollCrit(),
-                    damage = damageCounter * Modules.StaticValues.blockCounterDamageCoefficient,
+                    damage = (1.0f + (Config.redMistBuffDamage.Value * (float)this.characterBody.GetBuffCount(Modules.Buffs.RedMistBuff))) * (damageCounter * Modules.StaticValues.blockCounterDamageCoefficient * bonusMult),
                     position = target.transform.position,
                     force = UnityEngine.Vector3.zero,
                     damageType = RoR2.DamageType.Stun1s,

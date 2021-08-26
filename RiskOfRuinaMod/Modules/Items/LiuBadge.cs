@@ -26,8 +26,8 @@ namespace RiskOfRuinaMod.Modules.Items
             itemDef = ScriptableObject.CreateInstance<ItemDef>();
             itemDef.name = itemName;
             itemDef.tier = ItemTier.Tier2;
-            itemDef.pickupModelPrefab = Assets.arbiterTrophy;
-            itemDef.pickupIconSprite = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texRedMistUtilityIcon");
+            itemDef.pickupModelPrefab = Assets.liuBadge;
+            itemDef.pickupIconSprite = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texIconPickupRuinaLiuBadge");
             itemDef.nameToken = itemName.ToUpper() + "_NAME";
             itemDef.pickupToken = itemName.ToUpper() + "_PICKUP";
             itemDef.descriptionToken = itemName.ToUpper() + "_DESC";
@@ -56,7 +56,20 @@ namespace RiskOfRuinaMod.Modules.Items
             int count = base.GetCount(self);
             if (count > 0)
             {
-                self.damage += (self.baseDamage + self.levelDamage * (self.level - 1f)) * ((float)RoR2.Run.instance.stageClearCount * (damageIncrease + (stackIncrease * (float)(count - 1))));
+                if (RiskOfRuinaPlugin.kombatArenaInstalled)
+                {
+                    if (RiskOfRuinaPlugin.KombatGamemodeActive() && self.master)
+                    {
+                        self.damage += (self.baseDamage + self.levelDamage * (self.level - 1f)) * ((float)RiskOfRuinaPlugin.KombatDuelsPlayed(self.master) * (damageIncrease + (stackIncrease * (float)(count - 1))));
+                    } else
+                    {
+                        self.damage += (self.baseDamage + self.levelDamage * (self.level - 1f)) * ((float)RoR2.Run.instance.stageClearCount * (damageIncrease + (stackIncrease * (float)(count - 1))));
+                    }
+                } else
+                {
+                    self.damage += (self.baseDamage + self.levelDamage * (self.level - 1f)) * ((float)RoR2.Run.instance.stageClearCount * (damageIncrease + (stackIncrease * (float)(count - 1))));
+
+                }
             }
         }
     }

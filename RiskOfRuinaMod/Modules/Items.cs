@@ -10,6 +10,7 @@ namespace RiskOfRuinaMod.Modules
         public static ItemManager instance;
 
         public List<RuinaItem> items = new List<RuinaItem>();
+        public List<RuinaEquipment> equips = new List<RuinaEquipment>();
 
         public ItemManager()
         {
@@ -21,6 +22,14 @@ namespace RiskOfRuinaMod.Modules
             foreach(RuinaItem ruinaItem in this.items)
             {
                 ruinaItem.Init();
+            }
+        }
+
+        public void AddEquips()
+        {
+            foreach (RuinaEquipment ruinaEquip in this.equips)
+            {
+                ruinaEquip.Init();
             }
         }
     }

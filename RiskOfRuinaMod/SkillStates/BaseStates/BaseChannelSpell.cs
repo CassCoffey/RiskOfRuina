@@ -17,6 +17,7 @@ namespace RiskOfRuinaMod.SkillStates.BaseStates
         public Material overrideAreaIndicatorMat;
         public bool zooming = true;
         public bool centered = false;
+        public bool line = false;
 
         private bool hasCharged;
         private GameObject defaultCrosshairPrefab;
@@ -67,6 +68,17 @@ namespace RiskOfRuinaMod.SkillStates.BaseStates
             if (EntityStates.Huntress.ArrowRain.areaIndicatorPrefab)
             {
                 this.areaIndicatorInstance = UnityEngine.Object.Instantiate<GameObject>(EntityStates.Huntress.ArrowRain.areaIndicatorPrefab);
+
+                if (line)
+                {
+                    GameObject temp = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+                    Destroy(temp.GetComponent<CapsuleCollider>());
+                    temp.transform.parent = this.areaIndicatorInstance.transform;
+                    temp.transform.localPosition = new Vector3(0f, 0.35f, 0f);
+                    temp.transform.localScale = new Vector3(0.15f, 0.4f, 0.15f);
+                    temp.GetComponent<MeshRenderer>().material = this.areaIndicatorInstance.GetComponentInChildren<MeshRenderer>().material;
+                }
+                
                 this.areaIndicatorInstance.transform.localScale = Vector3.zero;
 
                 if (this.overrideAreaIndicatorMat) this.areaIndicatorInstance.GetComponentInChildren<MeshRenderer>().material = this.overrideAreaIndicatorMat;
@@ -184,7 +196,6 @@ namespace RiskOfRuinaMod.SkillStates.BaseStates
                 if (!this.hasCharged)
                 {
                     this.hasCharged = true;
-                    //Util.PlaySound(Modules.Sounds.ChannelMax, base.gameObject);
                 }
             }
 

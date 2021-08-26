@@ -25,8 +25,8 @@ namespace RiskOfRuinaMod.Modules.Items
             itemDef = ScriptableObject.CreateInstance<ItemDef>();
             itemDef.name = itemName;
             itemDef.tier = ItemTier.Tier1;
-            itemDef.pickupModelPrefab = Assets.arbiterTrophy;
-            itemDef.pickupIconSprite = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texRedMistUtilityIcon");
+            itemDef.pickupModelPrefab = Assets.blackTea;
+            itemDef.pickupIconSprite = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texIconPickupRuinaBlackTea");
             itemDef.nameToken = "RUINABLACKTEA_NAME";
             itemDef.pickupToken = "RUINABLACKTEA_PICKUP";
             itemDef.descriptionToken = "RUINABLACKTEA_DESC";
@@ -73,7 +73,7 @@ namespace RiskOfRuinaMod.Modules.Items
                                     inflictDotInfo.attackerObject = damageInfo.attacker;
                                     inflictDotInfo.victimObject = victim;
                                     inflictDotInfo.dotIndex = Modules.DoTCore.FairyIndex;
-                                    inflictDotInfo.duration = 20f;
+                                    inflictDotInfo.duration = 10f;
                                     inflictDotInfo.damageMultiplier = 0;
                                     InflictDotInfo inflictDotInfo2 = inflictDotInfo;
                                     DotController.InflictDot(ref inflictDotInfo2);

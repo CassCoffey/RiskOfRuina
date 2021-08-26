@@ -46,6 +46,14 @@ namespace RiskOfRuinaMod.SkillStates
                 this.duration = Mathf.Clamp(this.duration - stockValue, blinkDuration, this.duration);
             }
 
+            if (RiskOfRuinaPlugin.kombatArenaInstalled)
+            {
+                if (RiskOfRuinaPlugin.KombatGamemodeActive() && characterBody.master && RiskOfRuinaPlugin.KombatIsDueling(characterBody.master))
+                {
+                    duration += StaticValues.utilityPVPDebuff;
+                }
+            }
+
             statTracker = this.GetComponent<RedMistStatTracker>();
 
             this.dodgeVector = inputBank.moveVector;

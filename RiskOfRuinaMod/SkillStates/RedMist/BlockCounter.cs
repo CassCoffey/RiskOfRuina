@@ -18,6 +18,7 @@ namespace RiskOfRuinaMod.SkillStates
         public float damageCounter = 0f;
         public int hits = 0;
         public float duration = 0.5f;
+        public float bonusMult = 1f;
 
         protected RedMistEmotionComponent emotionComponent;
         protected RedMistStatTracker statTracker;
@@ -42,7 +43,7 @@ namespace RiskOfRuinaMod.SkillStates
                 attack.procCoefficient = 1f;
                 attack.baseForce = 300f;
                 attack.bonusForce = Vector3.zero;
-                attack.baseDamage = damageCounter * StaticValues.blockCounterDamageCoefficient;
+                attack.baseDamage = damageCounter * StaticValues.blockCounterDamageCoefficient * bonusMult;
                 attack.crit = base.RollCrit();
                 attack.attacker = this.characterBody.gameObject;
                 attack.damageColorIndex = DamageColorIndex.Default;

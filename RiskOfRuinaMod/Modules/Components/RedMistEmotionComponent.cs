@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using RoR2;
+using RoR2.CharacterAI;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -33,6 +35,7 @@ namespace RiskOfRuinaMod.Modules.Components
 			this.healthComponent = characterBody.healthComponent;
 			this.statTracker = base.gameObject.GetComponent<RedMistStatTracker>();
 
+			// In bossfight, give ego
 			if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name.Contains("moon")
 				|| UnityEngine.SceneManagement.SceneManager.GetActiveScene().name.Contains("limbo")
 				|| UnityEngine.SceneManagement.SceneManager.GetActiveScene().name.Contains("goldshores"))
@@ -47,11 +50,23 @@ namespace RiskOfRuinaMod.Modules.Components
 
 		private void FixedUpdate()
         {
+			if (!this.bossMode && characterBody.master && characterBody.master.GetComponent<BaseAI>())
+			{
+				this.bossMode = true;
+			}
+
 			if (this.currentEmotion < maxEmotion || inEGO)
             {
 				float decay = Config.emotionDecay.Value;
 				if (inEGO) decay += EGOage * Config.EGOAgeRatio.Value;
 				if (bossMode) decay = 0f;
+				if (RiskOfRuinaPlugin.kombatArenaInstalled)
+                {
+					if (RiskOfRuinaPlugin.KombatGamemodeActive())
+                    {
+						decay = 0f;
+                    }
+                }
 				this.SpendEmotion(decay);
 			}
 
@@ -63,15 +78,27 @@ namespace RiskOfRuinaMod.Modules.Components
 					ExitEGO();
 					exitRequested = true;
 				}
+
+				if (RiskOfRuinaPlugin.kombatArenaInstalled)
+				{
+					if (RiskOfRuinaPlugin.KombatGamemodeActive())
+					{
+						if (isServer && RiskOfRuinaPlugin.KombatIsWaiting(characterBody.gameObject))
+                        {
+							ExitEGO();
+							exitRequested = true;
+						}
+					}
+				}
+			}
+
+			if (isServer && this.bossMode && this.currentEmotion < maxEmotion)
+			{
+				CmdAddEmotion(100f);
 			}
 
 			if (!hasAuthority)
 				return;
-
-			if (this.bossMode && this.currentEmotion < maxEmotion)
-            {
-				CmdAddEmotion(100f);
-            }
 
 			if (RiskOfRuinaPlugin.DEBUG_MODE)
             {

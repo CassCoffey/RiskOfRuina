@@ -25,21 +25,6 @@ namespace RiskOfRuinaMod.SkillStates
 
         protected TemporaryOverlay iframeOverlay;
 
-        protected float trueMoveSpeed
-        {
-            get { return this.GetComponent<RedMistStatTracker>().modifiedMoveSpeed; }
-        }
-
-        protected float trueAttackSpeed
-        {
-            get { return this.GetComponent<RedMistStatTracker>().modifiedAttackSpeed; }
-        }
-
-        protected float trueDamage
-        {
-            get { return this.damageStat + (this.GetComponent<RedMistStatTracker>().DifferenceAttackSpeed * 10f) + (this.GetComponent<RedMistStatTracker>().DifferenceMoveSpeed); }
-        }
-
 
         public override void OnEnter()
         {

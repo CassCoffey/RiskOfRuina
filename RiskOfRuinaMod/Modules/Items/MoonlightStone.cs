@@ -23,8 +23,8 @@ namespace RiskOfRuinaMod.Modules.Items
             itemDef = ScriptableObject.CreateInstance<ItemDef>();
             itemDef.name = itemName;
             itemDef.tier = ItemTier.Tier1;
-            itemDef.pickupModelPrefab = Assets.arbiterTrophy;
-            itemDef.pickupIconSprite = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texRedMistUtilityIcon");
+            itemDef.pickupModelPrefab = Assets.moonlightStone;
+            itemDef.pickupIconSprite = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texIconPickupRuinaMoonlightStone");
             itemDef.nameToken = itemName.ToUpper() + "_NAME";
             itemDef.pickupToken = itemName.ToUpper() + "_PICKUP";
             itemDef.descriptionToken = itemName.ToUpper() + "_DESC";

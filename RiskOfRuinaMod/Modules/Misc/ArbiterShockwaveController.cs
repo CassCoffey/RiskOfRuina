@@ -26,7 +26,6 @@ namespace RiskOfRuinaMod.Modules.Misc
         private void Awake()
         {
             this.teamFilter = base.GetComponent<TeamFilter>();
-
         }
 
         private void Start()

@@ -29,6 +29,107 @@
             </summary>
             <returns>true if added, false otherwise</returns>
         </member>
+        <member name="T:R2API.ArtifactCodeAPI">
+            <summary>
+            API for adding custom artifact codes to the game.
+            </summary>
+        </member>
+        <member name="P:R2API.ArtifactCodeAPI.Loaded">
+            <summary>
+            Return true if the submodule is loaded.
+            </summary>
+        </member>
+        <member name="M:R2API.ArtifactCodeAPI.PrintSha256HashCode(On.RoR2.PortalDialerController.orig_PerformActionServer,RoR2.PortalDialerController,System.Byte[])">
+            <summary>
+            Prints the Artifact Code that the player inputs in the dialer. Useful for mod creators.
+            </summary>
+        </member>
+        <member name="M:R2API.ArtifactCodeAPI.AddCodes(On.RoR2.PortalDialerController.orig_Awake,RoR2.PortalDialerController)">
+            <summary>
+            Adds custom ArtifactCodes to the portal dialer controller instance found in sky meadow.
+            </summary>
+        </member>
+        <member name="M:R2API.ArtifactCodeAPI.AddCode(RoR2.ArtifactDef,RoR2.Sha256HashAsset)">
+            <summary>
+            Add a custom Artifact code to the SkyMeadow Artifact portal dialer.
+            The artifactDef must exist within the initialized ArtifactCatalog for it to properly added to the portal dialer.
+            </summary>
+            <param name="artifactDef">The artifactDef tied to the artifact code.</param>
+            <param name="sha256HashAsset">The artifact code.</param>
+        </member>
+        <member name="M:R2API.ArtifactCodeAPI.AddCode(RoR2.ArtifactDef,R2API.ArtifactCode)">
+            <summary>
+            Add a custom Artifact code to the SkyMeadow Artifact portal dialer.
+            The artifactDef must exist within the initialized ArtifactCatalog for it to properly added to the portal dialer.
+            </summary>
+            <param name="artifactDef">The artifactDef tied to the artifact code.</param>
+            <param name="artifactCode">The artifactCode written in the ArtifactCodeScriptableObject.</param>
+        </member>
+        <member name="M:R2API.ArtifactCodeAPI.AddCode(RoR2.ArtifactDef,System.UInt64,System.UInt64,System.UInt64,System.UInt64)">
+            <summary>
+            Add a custom Artifact code to the SkyMeadow Artifact portal dialer.
+            The artifactDef must exist within the initialized Artifactcatalog for it to be properly added to the portal dialer.
+            </summary>
+            <param name="artifactDef">The artifactDef tied to the artifact code.</param>
+            <param name="code_00_07">The values printed by R2API when a code is inputted.</param>
+            <param name="code_08_15">The values printed by R2API when a code is inputted.</param>
+            <param name="code_16_23">The values printed by R2API when a code is inputted.</param>
+            <param name="code_24_31">The values printed by R2API when a code is inputted.</param>
+        </member>
+        <member name="M:R2API.ArtifactCodeAPI.AddCode(RoR2.ArtifactDef,System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Add a custom Artifact code to the SkyMeadow Artifact portal dialer.
+            The artifactDef must exist within the initialized ArtifactCatalog for it to be properly added to the portal dialer.
+            </summary>
+            <param name="artifactDef">The artifactDef tied to the artifact code.</param>
+            <param name="CompoundValues">An IEnumerable of type "int" with a size of 9 filled with compound values.</param>
+        </member>
+        <member name="M:R2API.ArtifactCodeAPI.AddCompound(RoR2.ArtifactCompoundDef)">
+            <summary>
+            Add a custom Artifact Compound to the SkyMeadow's Artifact Buttons.
+            </summary>
+            <param name="artifactCompoundDef">The Artifact Compound to add. The value in the def must be unique, otherwise if a duplicate is found, it doesnt add the compound.</param>
+            <returns>True if added to the button prefab, false otherwise.</returns>
+        </member>
+        <member name="M:R2API.ArtifactCodeAPI.AddCompound(System.Int32,UnityEngine.Material,UnityEngine.GameObject)">
+            <summary>
+            Add a custom Artifact Compound to the SkyMeadow's Artifact Buttons
+            </summary>
+            <param name="compoundValue">The Value of the Compound.</param>
+            <param name="compoundDecalMaterial">The Decal Material of the Compound.</param>
+            <param name="compoundModelPrefab">The Model Prefab of the Compound.</param>
+            <returns></returns>
+        </member>
+        <member name="T:R2API.ArtifactCodeAPI.CompoundValues">
+            <summary>
+            Contains the values of Vanilla risk of rain 2 Artifact Compounds.
+            </summary>
+        </member>
+        <member name="F:R2API.ArtifactCodeAPI.CompoundValues.Empty">
+            <summary>
+            Value of the Empty compound.
+            </summary>
+        </member>
+        <member name="F:R2API.ArtifactCodeAPI.CompoundValues.Square">
+            <summary>
+            Value of the Square compound.
+            </summary>
+        </member>
+        <member name="F:R2API.ArtifactCodeAPI.CompoundValues.Circle">
+            <summary>
+            Value of the Circle compound.
+            </summary>
+        </member>
+        <member name="F:R2API.ArtifactCodeAPI.CompoundValues.Triangle">
+            <summary>
+            Value for the Triangle compound.
+            </summary>
+        </member>
+        <member name="F:R2API.ArtifactCodeAPI.CompoundValues.Diamond">
+            <summary>
+            Value for the Diamond compound.
+            </summary>
+        </member>
         <member name="T:R2API.AssetBundleResourcesProvider">
             <summary>
             This class provides a wrapper around an AssetBundle for integrating it into the regular Unity Resources library
@@ -1206,20 +1307,6 @@
             Return true if the submodule is loaded.
             </summary>
         </member>
-        <member name="M:R2API.ItemDropAPI.AddItemByTier(RoR2.ItemTier,RoR2.ItemIndex[])">
-            <summary>
-            Add the given items to the given drop table.
-            </summary>
-            <param name="itemTier">The drop table to add the items to.</param>
-            <param name="items">The item indices to add to the given drop table.</param>
-        </member>
-        <member name="M:R2API.ItemDropAPI.RemoveItemByTier(RoR2.ItemTier,RoR2.ItemIndex[])">
-            <summary>
-            Remove the given items to the given drop table.
-            </summary>
-            <param name="itemTier">The drop table to remove the items from.</param>
-            <param name="items">The item indices to remove from the given drop table.</param>
-        </member>
         <member name="T:R2API.LanguageAPI">
             <summary>
             class for language files to load
@@ -1653,10 +1740,13 @@
             <summary>Added to base health regen. HEALTH_REGEN ~ (BASE_REGEN + baseRegenAdd) * (REGEN_MULT + regenMultAdd).</summary>
         </member>
         <member name="F:R2API.RecalculateStatsAPI.StatHookEventArgs.baseMoveSpeedAdd">
-            <summary>Added to base move speed. MOVE_SPEED ~ (BASE_MOVE_SPEED + baseMoveSpeedAdd) * (MOVE_SPEED_MULT + moveSpeedMultAdd)</summary>
+            <summary>Added to base move speed. MOVE_SPEED ~ (BASE_MOVE_SPEED + baseMoveSpeedAdd) * (MOVE_SPEED_MULT + moveSpeedMultAdd / MOVE_SPEED_REDUCTION_MULT + moveSpeedReductionMultAdd)</summary>
         </member>
         <member name="F:R2API.RecalculateStatsAPI.StatHookEventArgs.moveSpeedMultAdd">
-            <summary>Added to the direct multiplier to move speed. MOVE_SPEED ~ (BASE_MOVE_SPEED + baseMoveSpeedAdd) * (MOVE_SPEED_MULT + moveSpeedMultAdd)</summary>
+            <summary>Added to the direct multiplier to move speed. MOVE_SPEED ~ (BASE_MOVE_SPEED + baseMoveSpeedAdd) * (MOVE_SPEED_MULT + moveSpeedMultAdd / MOVE_SPEED_REDUCTION_MULT + moveSpeedReductionMultAdd)</summary>
+        </member>
+        <member name="F:R2API.RecalculateStatsAPI.StatHookEventArgs.moveSpeedReductionMultAdd">
+            <summary>Added reduction multiplier to move speed. MOVE_SPEED ~ (BASE_MOVE_SPEED + baseMoveSpeedAdd) * (MOVE_SPEED_MULT + moveSpeedMultAdd / MOVE_SPEED_REDUCTION_MULT + moveSpeedReductionMultAdd)</summary>
         </member>
         <member name="F:R2API.RecalculateStatsAPI.StatHookEventArgs.jumpPowerMultAdd">
             <summary>Added to the direct multiplier to jump power. JUMP_POWER ~ BASE_JUMP_POWER * (JUMP_POWER_MULT + jumpPowerMultAdd)</summary>
@@ -1728,6 +1818,26 @@
             <param name="onSceneObjectsLoaded">Your action delegate that will be executed when the scene is loaded,
             the GameObject[] will contains the scene root game objects.</param>
             <exception cref="T:System.InvalidOperationException"></exception>
+        </member>
+        <member name="T:R2API.ArtifactCode">
+            <summary>
+            Scriptable object to ease the creation of Artifact codes.
+            </summary>
+        </member>
+        <member name="F:R2API.ArtifactCode.ArtifactCompounds">
+            <summary>
+            The code for the Artifact. for a list of accepted vanilla compound values, check ArtifactCodeAPI.CompoundValues
+            </summary>
+        </member>
+        <member name="F:R2API.ArtifactCode.hashAsset">
+            <summary>
+            The Sha256HashAsset stored in this Scriptable Object.
+            </summary>
+        </member>
+        <member name="M:R2API.ArtifactCode.Start">
+            <summary>
+            Creates the Sha256HashAsset
+            </summary>
         </member>
         <member name="T:R2API.SoundAPI">
             <summary>

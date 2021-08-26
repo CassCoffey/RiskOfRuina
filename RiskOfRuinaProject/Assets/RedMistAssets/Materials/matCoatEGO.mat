@@ -1318,7 +1318,7 @@ Material:
     - m_lightingOptions: 0
     - m_mainOptions: 1
     - m_outlineOptions: 0
-    - m_renderingOptions: 0
+    - m_renderingOptions: 1
     - m_start_Alpha: 0
     - m_start_BlackLight: 0
     - m_start_Blur: 0

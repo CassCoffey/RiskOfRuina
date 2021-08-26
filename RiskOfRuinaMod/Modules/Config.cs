@@ -7,6 +7,7 @@ namespace RiskOfRuinaMod.Modules
     {
         public static ConfigEntry<bool> themeMusic;
         public static ConfigEntry<bool> snapLevel;
+        public static ConfigEntry<bool> arbiterSound;
 
         public static ConfigEntry<float> statRatio;
         public static ConfigEntry<float> moveSpeedMult;
@@ -18,11 +19,13 @@ namespace RiskOfRuinaMod.Modules
         public static ConfigEntry<float> redMistBuffDamage;
 
         public static ConfigEntry<bool> iframeOverlay;
+        public static ConfigEntry<bool> redMistCoatShader;
 
         public static void ReadConfig()
         {
             themeMusic = RiskOfRuinaPlugin.instance.Config.Bind<bool>(new ConfigDefinition("Audio", "Theme Music"), true, new ConfigDescription("Set to false to disable theme music on Red Mist transformation."));
             snapLevel = RiskOfRuinaPlugin.instance.Config.Bind<bool>(new ConfigDefinition("Audio", "Snap On Level Up"), true, new ConfigDescription("Set to false to disable snapping on level up."));
+            arbiterSound = RiskOfRuinaPlugin.instance.Config.Bind<bool>(new ConfigDefinition("Audio", "Arbiter Primary Attack"), true, new ConfigDescription("Set to false to make Arbiter's Primary less grating."));
 
             statRatio = RiskOfRuinaPlugin.instance.Config.Bind<float>(new ConfigDefinition("Red Mist :: Stats", "Stat Ratio"), 0.0f, new ConfigDescription("Alter this to change how much speed gets converted into damage. 1.0 for none, 0.0 for all."));
             moveSpeedMult = RiskOfRuinaPlugin.instance.Config.Bind<float>(new ConfigDefinition("Red Mist :: Stats", "Move Speed Multiplier"), 6f, new ConfigDescription("Alter this to change how much 1 move speed is worth in damage."));
@@ -35,6 +38,7 @@ namespace RiskOfRuinaMod.Modules
             redMistBuffDamage = RiskOfRuinaPlugin.instance.Config.Bind<float>(new ConfigDefinition("Red Mist :: EGO", "Buff Damage Increase"), 0.01f, new ConfigDescription("Alter this to change how much a stack of the EGO buff increases your damage, value is a percentage of your total damage."));
 
             iframeOverlay = RiskOfRuinaPlugin.instance.Config.Bind<bool>(new ConfigDefinition("Red Mist :: Misc", "Iframe Overlay"), true, new ConfigDescription("Set to false to disable character overlay on IFrames."));
+            redMistCoatShader = RiskOfRuinaPlugin.instance.Config.Bind<bool>(new ConfigDefinition("Red Mist :: Misc", "EGO Shader"), true, new ConfigDescription("Set to false to disable the usage of non-standard shaders for EGO."));
         }
 
         // this helper automatically makes config entries for disabling survivors

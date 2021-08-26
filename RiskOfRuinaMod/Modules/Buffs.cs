@@ -16,6 +16,9 @@ namespace RiskOfRuinaMod.Modules
         internal static BuffDef strengthBuff;
         internal static BuffDef warpBuff;
 
+        internal static BuffDef udjatBuff;
+        internal static BuffDef reverbBuff;
+
         internal static List<BuffDef> buffDefs = new List<BuffDef>();
 
         internal static void RegisterBuffs()
@@ -29,6 +32,9 @@ namespace RiskOfRuinaMod.Modules
             feebleDebuff = AddNewBuff("FeebleDebuff", Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texFeebleDebuff"), Color.white, false, true);
             strengthBuff = AddNewBuff("StrengthBuff", Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texStrengenedBuff"), Color.white, false, false);
             warpBuff = AddNewBuff("WarpBuff", Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texChargeBuff"), Color.white, false, false);
+
+            udjatBuff = AddNewBuff("UdjatBuff", Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texUdjatBuff"), Color.white, true, false);
+            reverbBuff = AddNewBuff("ReverbBuff", Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texReverberationBuff"), Color.white, false, false);
         }
 
         // simple helper method

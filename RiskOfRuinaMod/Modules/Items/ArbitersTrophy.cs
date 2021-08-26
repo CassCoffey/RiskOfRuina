@@ -17,7 +17,7 @@ namespace RiskOfRuinaMod.Modules.Items
 
         public ItemDef itemDef;
 
-        public float procChance = 3f;
+        public float procChance = 2f;
         public float stackChance = 2f;
 
         public override void ItemSetup()
@@ -26,7 +26,7 @@ namespace RiskOfRuinaMod.Modules.Items
             itemDef.name = itemName;
             itemDef.tier = ItemTier.Tier3;
             itemDef.pickupModelPrefab = Assets.arbiterTrophy;
-            itemDef.pickupIconSprite = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texRedMistUtilityIcon");
+            itemDef.pickupIconSprite = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texIconPickupRuinaArbitersTrophy");
             itemDef.nameToken = "ARBITERTROPHY_NAME";
             itemDef.pickupToken = "ARBITERTROPHY_PICKUP";
             itemDef.descriptionToken = "ARBITERTROPHY_DESC";

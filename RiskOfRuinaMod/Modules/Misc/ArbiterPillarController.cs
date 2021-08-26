@@ -37,6 +37,12 @@ namespace RiskOfRuinaMod.Modules.Misc
         private float rangeIndicatorScaleVelocity;
         private float stopwatch;
         private float calculatedRadius;
+        private TeamFilter teamFilter;
+
+        private void Awake()
+        {
+            this.teamFilter = base.GetComponent<TeamFilter>();
+        }
 
         private void OnEnable()
         {
@@ -170,13 +176,16 @@ namespace RiskOfRuinaMod.Modules.Misc
                     TeamComponent projectileTeam = projectile.owner.GetComponent<TeamComponent>();
                     if (projectileTeam)
                     {
-                        EffectData effectData = new EffectData();
-                        effectData.origin = projectile.transform.position;
-                        effectData.scale = 4;
+                        if (projectileTeam.teamIndex != this.teamFilter.teamIndex)
+                        {
+                            EffectData effectData = new EffectData();
+                            effectData.origin = projectile.transform.position;
+                            effectData.scale = 4;
 
-                        EffectManager.SpawnEffect(Modules.Assets.fairyDeleteEffect, effectData, false);
+                            EffectManager.SpawnEffect(Modules.Assets.fairyDeleteEffect, effectData, false);
 
-                        Destroy(projectile.gameObject);
+                            Destroy(projectile.gameObject);
+                        }
                     }
                 }
             }

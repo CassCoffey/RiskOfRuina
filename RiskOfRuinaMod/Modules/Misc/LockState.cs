@@ -16,6 +16,14 @@ namespace RiskOfRuinaMod.Modules.Misc
 
 		public override void OnEnter()
 		{
+			if (RiskOfRuinaPlugin.kombatArenaInstalled)
+			{
+				if (RiskOfRuinaPlugin.KombatGamemodeActive() && characterBody.master && RiskOfRuinaPlugin.KombatIsDueling(characterBody.master) && duration > 3f)
+				{
+					duration = 3f;
+				}
+			}
+
 			base.OnEnter();
 
 			lockedProjectiles = new List<GameObject>();
@@ -58,6 +66,11 @@ namespace RiskOfRuinaMod.Modules.Misc
 		public override void FixedUpdate()
 		{
 			base.FixedUpdate();
+
+			if (base.characterMotor)
+            {
+				base.characterMotor.velocity = Vector3.zero;
+			}
 
 			// Try to hold any projectiles they may have been firing.
 			Collider[] projectiles = Physics.OverlapSphere(base.transform.position, 50f, LayerIndex.projectile.mask);

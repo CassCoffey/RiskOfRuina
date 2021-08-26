@@ -35,10 +35,14 @@ namespace RiskOfRuinaMod.Modules.Items
                 for (int i = body.activeBuffsList.Length - 1; i >= 0 && removed < this.stack; i--)
                 {
 					BuffDef buff = BuffCatalog.GetBuffDef(body.activeBuffsList[i]);
-					if (buff.isDebuff)
+					if (buff.isDebuff && body.GetBuffCount(buff) > 0)
                     {
-						body.RemoveBuff(body.activeBuffsList[i]);
-						removed++;
+						// Some buffs are actually debuffs
+						if (buff.buffIndex != BuffCatalog.FindBuffIndex("BanditSkull") && buff.buffIndex != BuffCatalog.FindBuffIndex("ElementalRingsCooldown"))
+                        {
+							body.RemoveBuff(body.activeBuffsList[i]);
+							removed++;
+						}
                     }
                 }
 				this.timer = 0f;

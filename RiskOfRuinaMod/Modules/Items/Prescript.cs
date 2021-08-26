@@ -18,15 +18,15 @@ namespace RiskOfRuinaMod.Modules.Items
 
         public ItemDef itemDef;
 
-        public float damageIncrease = 0.03f;
+        public float damageIncrease = 0.01f;
 
         public override void ItemSetup()
         {
             itemDef = ScriptableObject.CreateInstance<ItemDef>();
             itemDef.name = itemName;
-            itemDef.tier = ItemTier.Tier1;
-            itemDef.pickupModelPrefab = Assets.arbiterTrophy;
-            itemDef.pickupIconSprite = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texRedMistUtilityIcon");
+            itemDef.tier = ItemTier.Tier2;
+            itemDef.pickupModelPrefab = Assets.prescript;
+            itemDef.pickupIconSprite = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texIconPickupRuinaPrescript");
             itemDef.nameToken = "RUINAPRESCRIPT_NAME";
             itemDef.pickupToken = "RUINAPRESCRIPT_PICKUP";
             itemDef.descriptionToken = "RUINAPRESCRIPT_DESC";

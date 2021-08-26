@@ -22,18 +22,18 @@ namespace RiskOfRuinaMod.Modules.Survivors
 
         internal override BodyInfo bodyInfo { get; set; } = new BodyInfo
         {
-            armor = 40f,
-            armorGrowth = 2f,
+            armor = 30f,
+            armorGrowth = 0f,
             bodyName = "ArbiterBody",
             bodyNameToken = RiskOfRuinaPlugin.developerPrefix + "_ARBITER_BODY_NAME",
             bodyColor = Color.grey,
             characterPortrait = Modules.Assets.LoadCharacterIcon("Arbiter"),
             crosshair = Modules.Assets.LoadCrosshair("SimpleDot"),
             damage = 10f,
-            healthGrowth = 40f,
-            healthRegen = 2f,
+            healthGrowth = 33f,
+            healthRegen = 1f,
             jumpCount = 1,
-            maxHealth = 200f,
+            maxHealth = 110f,
             subtitleNameToken = RiskOfRuinaPlugin.developerPrefix + "_ARBITER_BODY_SUBTITLE",
             podPrefab = Resources.Load<GameObject>("Prefabs/NetworkedObjects/SurvivorPod")
         };
@@ -72,7 +72,7 @@ namespace RiskOfRuinaMod.Modules.Survivors
 
         internal override void InitializeDoppelganger()
         {
-            base.InitializeDoppelganger();
+            Modules.Prefabs.CreateGenericDoppelganger(instance.bodyPrefab, bodyName + "MonsterMaster", "Mage");
         }
 
         internal override void InitializeHitboxes()
@@ -97,6 +97,7 @@ namespace RiskOfRuinaMod.Modules.Survivors
             skillLocator.passiveSkill.skillNameToken = prefix + "_ARBITER_BODY_PASSIVE_NAME";
             skillLocator.passiveSkill.skillDescriptionToken = prefix + "_ARBITER_BODY_PASSIVE_DESCRIPTION";
             skillLocator.passiveSkill.icon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texArbiterPassiveIcon");
+            skillLocator.passiveSkill.keywordToken = "KEYWORD_FAIRY";
             #endregion
 
             #region Primary
@@ -126,16 +127,18 @@ namespace RiskOfRuinaMod.Modules.Survivors
                 rechargeStock = 1,
                 requiredStock = 1,
                 stockToConsume = 1,
+                keywordTokens = new string[]
+                {
+                    "KEYWORD_LOCK"
+                }
             });
-
-            Modules.Skills.AddSecondarySkills(bodyPrefab, lockSkillDef);
 
             Skills.unlockSkillDef = Modules.Skills.CreateTrackerSkillDef(new SkillDefInfo
             {
                 skillName = prefix + "_ARBITER_BODY_SECONDARY_UNLOCK_NAME",
                 skillNameToken = prefix + "_ARBITER_BODY_SECONDARY_UNLOCK_NAME",
                 skillDescriptionToken = prefix + "_ARBITER_BODY_SECONDARY_UNLOCK_DESCRIPTION",
-                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texArbiterSecondaryIcon"),
+                skillIcon = Modules.Assets.mainAssetBundle.LoadAsset<Sprite>("texArbiterSecondaryTwoIcon"),
                 activationState = new EntityStates.SerializableEntityStateType(typeof(SkillStates.Unlock)),
                 activationStateMachineName = "Slide",
                 baseMaxStock = 1,
@@ -152,9 +155,13 @@ namespace RiskOfRuinaMod.Modules.Survivors
                 rechargeStock = 1,
                 requiredStock = 1,
                 stockToConsume = 0,
+                keywordTokens = new string[]
+                {
+                    "KEYWORD_UNLOCK"
+                }
             });
 
-            Modules.Skills.AddSecondarySkills(bodyPrefab, Skills.unlockSkillDef);
+            Modules.Skills.AddSecondarySkills(bodyPrefab, lockSkillDef, Skills.unlockSkillDef);
             #endregion
 
             #region Utility
@@ -182,8 +189,6 @@ namespace RiskOfRuinaMod.Modules.Survivors
                 stockToConsume = 1
             });
 
-            Modules.Skills.AddUtilitySkills(bodyPrefab, pillarsSkillDef);
-
             SkillDef pillarsSpearSkillDef = Modules.Skills.CreateSkillDef(new SkillDefInfo
             {
                 skillName = prefix + "_ARBITER_BODY_UTILITY_PILLARSSPEAR_NAME",
@@ -205,10 +210,14 @@ namespace RiskOfRuinaMod.Modules.Survivors
                 cancelSprintingOnActivation = true,
                 rechargeStock = 1,
                 requiredStock = 1,
-                stockToConsume = 1
+                stockToConsume = 1,
+                keywordTokens = new string[]
+                {
+                    "KEYWORD_FAIRY"
+                }
             });
 
-            Modules.Skills.AddUtilitySkills(bodyPrefab, pillarsSpearSkillDef);
+            Modules.Skills.AddUtilitySkills(bodyPrefab, pillarsSkillDef, pillarsSpearSkillDef);
             #endregion
 
             #region Special
@@ -233,7 +242,11 @@ namespace RiskOfRuinaMod.Modules.Survivors
                 cancelSprintingOnActivation = true,
                 rechargeStock = 1,
                 requiredStock = 5,
-                stockToConsume = 5
+                stockToConsume = 5,
+                keywordTokens = new string[]
+                {
+                    "KEYWORD_FEEBLE"
+                }
             });
 
             Modules.Skills.AddSpecialSkills(bodyPrefab, shockwaveSkillDef);

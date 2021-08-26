@@ -17,6 +17,8 @@ namespace RiskOfRuinaMod.SkillStates
         public float duration = 1f;
         public float invulStart = 0f;
         public float invulEnd = 0.35f;
+        public float bonusMult = 1f;
+        public float stockBonus = 0.4f;
         public float hitBonus = 0.6f;
         public bool invul = false;
         public bool blockOut = false;
@@ -36,6 +38,14 @@ namespace RiskOfRuinaMod.SkillStates
 
         public override void OnEnter()
         {
+            if (RiskOfRuinaPlugin.kombatArenaInstalled)
+            {
+                if (RiskOfRuinaPlugin.KombatGamemodeActive() && characterBody.master && RiskOfRuinaPlugin.KombatIsDueling(characterBody.master))
+                {
+                    duration += StaticValues.utilityPVPDebuff;
+                }
+            }
+
             this.emotionComponent = base.gameObject.GetComponent<RedMistEmotionComponent>();
             this.statTracker = base.gameObject.GetComponent<RedMistStatTracker>();
             this.modelTransform = base.GetModelTransform();
@@ -69,12 +79,17 @@ namespace RiskOfRuinaMod.SkillStates
             if (NetworkServer.active)
             {
                 base.characterBody.AddBuff(RoR2Content.Buffs.HiddenInvincibility);
-                invul = true;
+            }
+            invul = true;
+
+            if (base.skillLocator.utility.stock > 1)
+            {
+                this.bonusMult += (base.skillLocator.utility.stock - 1) * this.stockBonus;
             }
 
             base.OnEnter();
 
-            On.RoR2.GlobalEventManager.OnHitEnemy += OnHit;
+            RiskOfRuinaNetworkManager.ServerOnHit += OnHit;
 
             base.cameraTargetParams.cameraParams = Modules.CameraParams.HorizontalSlashCameraParamsRedMist;
             base.cameraTargetParams.aimMode = CameraTargetParams.AimType.Aura;
@@ -87,7 +102,7 @@ namespace RiskOfRuinaMod.SkillStates
             col.radius = originalRadius * 25f;
         }
 
-        public void OnHit(On.RoR2.GlobalEventManager.orig_OnHitEnemy orig, GlobalEventManager self, DamageInfo damageInfo, UnityEngine.GameObject victim)
+        public void OnHit(float damage, UnityEngine.GameObject attacker, UnityEngine.GameObject victim)
         {
             if (victim == this.gameObject && invul)
             {
@@ -97,10 +112,18 @@ namespace RiskOfRuinaMod.SkillStates
                 invulEnd = this.fixedAge + hitBonus;
                 duration = invulEnd + hitBonus;
 
-                GameObject attacker = damageInfo.attacker;
-                if (attacker && attacker.GetComponent<CharacterBody>())
+                if (attacker && attacker.GetComponent<CharacterBody>() && attacker.GetComponent<CharacterBody>() != this.characterBody)
                 {
-                    damageCounter += damageInfo.damage;
+                    float modDamage = damage;
+                    if (RiskOfRuinaPlugin.kombatArenaInstalled)
+                    {
+                        if (RiskOfRuinaPlugin.KombatGamemodeActive() && this.characterBody.master && RiskOfRuinaPlugin.KombatIsDueling(this.characterBody.master))
+                        {
+                            modDamage = damage * StaticValues.counterPVPBoost;
+                        }
+                    }
+
+                    damageCounter += modDamage;
 
                     CharacterBody component = attacker.GetComponent<CharacterBody>();
 
@@ -111,7 +134,7 @@ namespace RiskOfRuinaMod.SkillStates
                             attacker = base.characterBody.gameObject,
                             inflictor = base.characterBody.gameObject,
                             crit = base.RollCrit(),
-                            damage = (1.0f + (Config.redMistBuffDamage.Value * (float)this.characterBody.GetBuffCount(Modules.Buffs.RedMistBuff))) * (damageInfo.damage * Modules.StaticValues.blockCounterDamageCoefficient),
+                            damage = (1.0f + (Config.redMistBuffDamage.Value * (float)this.characterBody.GetBuffCount(Modules.Buffs.RedMistBuff))) * (modDamage * Modules.StaticValues.blockCounterDamageCoefficient * bonusMult),
                             position = attacker.transform.position,
                             force = UnityEngine.Vector3.zero,
                             damageType = RoR2.DamageType.Generic,
@@ -158,9 +181,9 @@ namespace RiskOfRuinaMod.SkillStates
                 }
             }
 
-            if (NetworkServer.active && base.fixedAge >= this.invulEnd && invul)
+            if (base.fixedAge >= this.invulEnd && invul)
             {
-                if (base.characterBody.HasBuff(RoR2Content.Buffs.HiddenInvincibility))
+                if (NetworkServer.active && base.characterBody.HasBuff(RoR2Content.Buffs.HiddenInvincibility))
                 {
                     base.characterBody.RemoveBuff(RoR2Content.Buffs.HiddenInvincibility);
                 }
@@ -169,14 +192,22 @@ namespace RiskOfRuinaMod.SkillStates
                 {
                     this.characterModel.invisibilityCount--;
                 }
-                EffectData effectData = new EffectData();
-                effectData.rotation = Quaternion.identity;
-                effectData.origin = this.characterBody.corePosition;
-                EffectManager.SpawnEffect(statTracker.phaseEffect, effectData, true);
+
+                if (base.isAuthority)
+                {
+                    EffectData effectData = new EffectData();
+                    effectData.rotation = Quaternion.identity;
+                    effectData.origin = this.characterBody.corePosition;
+                    EffectManager.SpawnEffect(statTracker.phaseEffect, effectData, true);
+                }
 
                 this.mistEffect.Stop();
 
                 invul = false;
+
+                CapsuleCollider col = (CapsuleCollider)base.characterBody.mainHurtBox.collider;
+                col.height = 1.5f;
+                col.radius = 0.2f;
 
                 // Counter Time
                 if (damageCounter > 0f)
@@ -185,7 +216,8 @@ namespace RiskOfRuinaMod.SkillStates
                     {
                         this.outer.SetNextState(new EGOBlockCounter
                         {
-                            damageCounter = this.damageCounter
+                            damageCounter = this.damageCounter,
+                            bonusMult = this.bonusMult
                         });
                     }
                 } else
@@ -199,7 +231,8 @@ namespace RiskOfRuinaMod.SkillStates
             {
                 this.outer.SetNextState(new EGOBlockCounter
                 {
-                    damageCounter = this.damageCounter
+                    damageCounter = this.damageCounter,
+                    bonusMult = this.bonusMult
                 });
             }
 
@@ -217,10 +250,10 @@ namespace RiskOfRuinaMod.SkillStates
             }
 
             CapsuleCollider col = (CapsuleCollider)base.characterBody.mainHurtBox.collider;
-            col.height = originalHeight;
-            col.radius = originalRadius;
+            col.height = 1.5f;
+            col.radius = 0.2f;
 
-            On.RoR2.GlobalEventManager.OnHitEnemy -= OnHit;
+            RiskOfRuinaNetworkManager.ServerOnHit -= OnHit;
 
             base.OnExit();
         }
@@ -228,6 +261,22 @@ namespace RiskOfRuinaMod.SkillStates
         public override InterruptPriority GetMinimumInterruptPriority()
         {
             return InterruptPriority.Death;
+        }
+
+        public override void OnSerialize(NetworkWriter writer)
+        {
+            base.OnSerialize(writer);
+            writer.Write(this.damageCounter);
+            writer.Write(this.invulEnd);
+            writer.Write(this.duration);
+        }
+
+        public override void OnDeserialize(NetworkReader reader)
+        {
+            base.OnDeserialize(reader);
+            this.damageCounter = reader.ReadSingle();
+            this.invulEnd = reader.ReadSingle();
+            this.duration = reader.ReadSingle();
         }
     }
 }
