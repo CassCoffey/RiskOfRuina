@@ -39,16 +39,6 @@ namespace RiskOfRuinaMod.Modules.Components
 
 		public string musicName = "Play_Ruina_Boss_Music";
 
-		public float DifferenceMoveSpeed
-		{
-			get { return Mathf.Clamp(totalMoveSpeed - modifiedMoveSpeed, 0f, totalMoveSpeed); }
-		}
-
-		public float DifferenceAttackSpeed
-		{
-			get { return Mathf.Clamp(totalAttackSpeed - modifiedAttackSpeed, 0f, totalAttackSpeed); }
-		}
-
 		private void Start()
 		{
 			this.characterBody = base.GetComponent<CharacterBody>();
@@ -88,30 +78,6 @@ namespace RiskOfRuinaMod.Modules.Components
 					childLocator.FindChild("ParticleHair").GetChild(1).gameObject.SetActive(true);
 				}
 			}
-		}
-
-		public float CalculateMoveSpeed(float moveSpeed)
-        {
-			float newMoveSpeed = moveSpeed - lastMoveSpeed;
-
-			totalMoveSpeed += newMoveSpeed;
-			modifiedMoveSpeed += newMoveSpeed * Config.statRatio.Value;
-
-			lastMoveSpeed = moveSpeed;
-
-			return modifiedMoveSpeed;
-		}
-
-		public float CalculateAttackSpeed(float attackSpeed)
-		{
-			float newAttackSpeed = attackSpeed - lastAttackSpeed;
-
-			totalAttackSpeed += newAttackSpeed;
-			modifiedAttackSpeed += newAttackSpeed * Config.statRatio.Value;
-
-			lastAttackSpeed = attackSpeed;
-
-			return modifiedAttackSpeed;
 		}
 	}
 }

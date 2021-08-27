@@ -21,7 +21,7 @@ namespace RiskOfRuinaMod.SkillStates
 
 		protected float trueDamage
 		{
-			get { return (1.0f + (Config.redMistBuffDamage.Value * (float)this.characterBody.GetBuffCount(Modules.Buffs.RedMistBuff))) * (this.damageStat); }
+			get { return this.damageStat; }
 		}
 
 		public override void OnEnter()

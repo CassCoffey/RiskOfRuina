@@ -44,12 +44,12 @@ namespace RiskOfRuinaMod
         //   this shouldn't even have to be said
         public const string MODUID = "com.Scoops.RiskOfRuina";
         public const string MODNAME = "RiskOfRuina";
-        public const string MODVERSION = "1.0.4";
+        public const string MODVERSION = "1.0.6";
 
         // a prefix for name tokens to prevent conflicts- please capitalize all name tokens for convention
         public const string developerPrefix = "COF";
 
-        public static bool DEBUG_MODE = true;
+        public static bool DEBUG_MODE = false;
 
         // Networking stuff
         public static GameObject CentralNetworkObject;
@@ -96,7 +96,7 @@ namespace RiskOfRuinaMod
             this.itemManager.items.Add(new Prescript());
             this.itemManager.items.Add(new LiuBadge());
             this.itemManager.items.Add(new WorkshopAmmo());
-            this.itemManager.items.Add(new MoonlightStone());
+            //this.itemManager.items.Add(new MoonlightStone());
             this.itemManager.items.Add(new WeddingRing());
             this.itemManager.items.Add(new UdjatMask());
             this.itemManager.items.Add(new Reverberation());
@@ -140,8 +140,10 @@ namespace RiskOfRuinaMod
 
         private void LateSetup(HG.ReadOnlyArray<RoR2.ContentManagement.ReadOnlyContentPack> obj)
         {
-            // have to set item displays later now because they require direct object references..
+            // have to set item displays later now because they require direct object references.
             Modules.Survivors.RedMist.instance.SetItemDisplays();
+
+            On.RoR2.CharacterBody.RecalculateStats += CharacterBody_RecalculateStats;
         }
 
         [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
@@ -187,7 +189,6 @@ namespace RiskOfRuinaMod
             {
                 On.RoR2.CharacterBody.OnLevelUp += CharacterBody_OnLevelUp;
             }
-            On.RoR2.CharacterBody.RecalculateStats += CharacterBody_RecalculateStats;
             On.RoR2.GlobalEventManager.OnHitEnemy += GlobalEvent_OnHitEnemy;
             On.RoR2.GlobalEventManager.OnCharacterDeath += GlobalEvent_OnCharacterDeath;
             On.RoR2.CharacterSpeech.BrotherSpeechDriver.DoInitialSightResponse += BrotherSpeechDriver_DoInitialSightResponse;
@@ -372,7 +373,7 @@ namespace RiskOfRuinaMod
 
             if (self)
             {
-                if (this.IsModCharSelected)
+                if (this.IsModCharSelected && self.isPlayerControlled)
                 {
                     Util.PlaySound("Ruina_Snap", self.gameObject);
                 }
@@ -431,16 +432,26 @@ namespace RiskOfRuinaMod
                     float newMoveSpeed = self.moveSpeed;
                     float newAttackSpeed = self.attackSpeed;
 
-                    self.moveSpeed = self.baseMoveSpeed; //statTracker.CalculateMoveSpeed(self.moveSpeed);
-                    self.attackSpeed = self.baseAttackSpeed; //statTracker.CalculateAttackSpeed(self.attackSpeed);
+                    self.moveSpeed = self.baseMoveSpeed;
+                    self.attackSpeed = self.baseAttackSpeed;
 
-                    float buffDamage = (Modules.Config.redMistBuffDamage.Value * (float)self.GetBuffCount(Buffs.RedMistBuff) * self.baseDamage);
-                    self.damage += buffDamage;
-                    Debug.Log("Currently gaining " + buffDamage + " total damage, which should be " + (Modules.Config.redMistBuffDamage.Value * (float)self.GetBuffCount(Buffs.RedMistBuff)) + "% of base.");
+                    float percentChangeMove = (newMoveSpeed - self.baseMoveSpeed) / self.baseMoveSpeed;
+                    if (self.isSprinting)
+                    {
+                        percentChangeMove = (newMoveSpeed - (self.baseMoveSpeed * self.sprintingSpeedMultiplier)) / (self.baseMoveSpeed * self.sprintingSpeedMultiplier);
+                    }
+                    float percentChangeAttack = (newAttackSpeed - self.baseAttackSpeed) / self.baseAttackSpeed;
 
-                    float speedDamage = (Modules.Config.redMistBuffDamage.Value * (float)self.GetBuffCount(Buffs.RedMistBuff) * self.baseDamage);
+                    percentChangeMove *= Modules.Config.moveSpeedMult.Value;
+                    percentChangeAttack *= Modules.Config.attackSpeedMult.Value;
+
+                    float trueBase = (self.baseDamage + self.levelDamage * (self.level - 1f));
+
+                    float buffDamage = (Modules.Config.redMistBuffDamage.Value * (float)self.GetBuffCount(Buffs.RedMistBuff)) * trueBase;
                     self.damage += buffDamage;
-                    Debug.Log("Currently gaining " + buffDamage + " total damage, which should be " + (Modules.Config.redMistBuffDamage.Value * (float)self.GetBuffCount(Buffs.RedMistBuff)) + "% of base.");
+
+                    float speedDamage = (percentChangeMove * trueBase) + (percentChangeAttack * trueBase);
+                    self.damage += speedDamage;
 
                     float sprintBonus = 0f;
                     float OOCsprintBonus = 0f;

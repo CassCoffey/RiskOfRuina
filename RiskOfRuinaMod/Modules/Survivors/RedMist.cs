@@ -49,7 +49,7 @@ namespace RiskOfRuinaMod.Modules.Survivors
             damage = 12f,
             healthGrowth = 33f,
             healthRegen = 1f,
-            jumpCount = 2,
+            jumpCount = 1,
             maxHealth = 110f,
             subtitleNameToken = RiskOfRuinaPlugin.developerPrefix + "_REDMIST_BODY_SUBTITLE",
             podPrefab = Resources.Load<GameObject>("Prefabs/NetworkedObjects/SurvivorPod"),

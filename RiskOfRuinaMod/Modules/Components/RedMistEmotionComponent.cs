@@ -251,7 +251,7 @@ namespace RiskOfRuinaMod.Modules.Components
 
 			StopMusic();
 
-			if (isServer)
+			if (isServer && !Config.redMistBuffMaintain.Value)
             {
 				characterBody.RemoveBuff(Modules.Buffs.EGOBuff);
 				int buffsToRemove = characterBody.GetBuffCount(Modules.Buffs.RedMistBuff);

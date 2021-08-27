@@ -43,16 +43,61 @@ namespace RiskOfRuinaMod.Modules.Items
 
         public override void HookSetup()
         {
-            On.RoR2.CharacterBody.OnInventoryChanged += new On.RoR2.CharacterBody.hook_OnInventoryChanged(this.CharacterBody_OnInventoryChanged);
+            On.RoR2.CharacterBody.FixedUpdate += new On.RoR2.CharacterBody.hook_FixedUpdate(this.ClearBuffs);
         }
 
-        private void CharacterBody_OnInventoryChanged(On.RoR2.CharacterBody.orig_OnInventoryChanged orig, CharacterBody self)
-        {
-            if (self && self.inventory)
-            {
-                self.AddItemBehavior<MoonlightStoneBehavior>(base.GetCount(self));
+		private void ClearBuffs(On.RoR2.CharacterBody.orig_FixedUpdate orig, CharacterBody self)
+		{
+			if (NetworkServer.active)
+			{
+                int count = base.GetCount(self);
+
+                if (count > 0)
+                {
+                    MoonlightStoneTracker stoneTracker = self.GetComponent<MoonlightStoneTracker>();
+                    if (!stoneTracker)
+                    {
+                        stoneTracker = self.gameObject.AddComponent<MoonlightStoneTracker>();
+                    }
+
+                    stoneTracker.timer += Time.deltaTime;
+                    if (stoneTracker.timer >= 2f)
+                    {
+                        int removed = 0;
+
+                        DotController selfDotController = DotController.FindDotController(self.gameObject);
+                        if (selfDotController)
+                        {
+                            for (int i = selfDotController.dotStackList.Count - 1; i >= 0 && removed < count; i--)
+                            {
+                                selfDotController.RemoveDotStackAtServer(i);
+                                removed++;
+                            }
+                        }
+
+                        for (int i = self.activeBuffsList.Length - 1; i >= 0 && removed < count; i--)
+                        {
+                            BuffDef buff = BuffCatalog.GetBuffDef(self.activeBuffsList[i]);
+                            if (buff.isDebuff && self.GetBuffCount(buff) > 0)
+                            {
+                                // Some buffs are actually debuffs
+                                if (buff.buffIndex != BuffCatalog.FindBuffIndex("BanditSkull") && buff.buffIndex != BuffCatalog.FindBuffIndex("ElementalRingsCooldown"))
+                                {
+                                    self.RemoveBuff(self.activeBuffsList[i]);
+                                    removed++;
+                                }
+                            }
+                        }
+                        stoneTracker.timer = 0f;
+                    }
+                }
             }
-            orig.Invoke(self);
-        }
+			orig.Invoke(self);
+		}
+	}
+
+    public class MoonlightStoneTracker : MonoBehaviour
+    {
+        public float timer = 0f;
     }
 }

@@ -33,7 +33,7 @@ namespace RiskOfRuinaMod.Modules
 
             #region Passive
             LanguageAPI.Add(prefix + "PASSIVE_NAME", "Gebura's Prowess");
-            LanguageAPI.Add(prefix + "PASSIVE_DESCRIPTION", "Red Mist can <style=cIsUtility>jump twice</style>. All <style=cIsDamage>Attack Speed</style> and <style=cIsUtility>Movement Speed</style> bonuses are converted into <style=cIsDamage>Damage</style>.");
+            LanguageAPI.Add(prefix + "PASSIVE_DESCRIPTION", "All <style=cIsDamage>Attack Speed</style> and <style=cIsUtility>Movement Speed</style> bonuses are converted into <style=cIsDamage>Damage</style>.");
             #endregion
 
             #region Primary
@@ -64,7 +64,7 @@ namespace RiskOfRuinaMod.Modules
             LanguageAPI.Add(prefix + "SPECIAL_HORIZONTAL_NAME", "Greater Split: Horizontal");
             LanguageAPI.Add(prefix + "SPECIAL_HORIZONTAL_DESCRIPTION", $"Swing your sword in a massive arc, dealing <style=cIsDamage>{100f * StaticValues.horizontalDamageCoefficient}% damage</style>.");
 
-            LanguageAPI.Add("KEYWORD_EGO", $"<color=red><style=cKeywordName>EGO Mode</style></color><style=cSub>Gain <color=red>EGO</color> by <style=cIsDamage>damaging enemies</style>. Drains over time. While in EGO Mode, gain a <style=cIsDamage>{100f * Config.redMistBuffDamage.Value}% damage increase</style> for every enemy killed.");
+            LanguageAPI.Add("KEYWORD_EGO", $"<color=red><style=cKeywordName>EGO Mode</style></color><style=cSub>Gain <color=red>EGO</color> by <style=cIsDamage>damaging enemies</style>. Drains over time. While in EGO Mode, gain a <style=cIsDamage>{100f * Config.redMistBuffDamage.Value}% base damage increase</style> for every enemy killed.");
             #endregion
 
             #region Achievements
@@ -225,7 +225,7 @@ namespace RiskOfRuinaMod.Modules
             LanguageAPI.Add("ARBITERTROPHY_NAME", "An Arbiter's Trophy");
             LanguageAPI.Add("ARBITERTROPHY_PICKUP", "Chance to Lock on hit");
             LanguageAPI.Add("ARBITERTROPHY_DESC",
-                "Grants <style=cIsUtility>2%</style> <style=cStack>(+2% per item stack)</style> chance to Lock enemies on hit.");
+                "Grants <style=cIsUtility>1%</style> <style=cStack>(+1% per item stack)</style> chance to Lock enemies on hit.");
             LanguageAPI.Add("ARBITERTROPHY_LORE",
                 "A trophy from a past battle.");
             #endregion
@@ -309,7 +309,7 @@ namespace RiskOfRuinaMod.Modules
             LanguageAPI.Add("RUINABACKWARDSCLOCK_NAME", "Backwards Clock");
             LanguageAPI.Add("RUINABACKWARDSCLOCK_PICKUP", "Sacrifice yourself to resurrect all allies");
             LanguageAPI.Add("RUINABACKWARDSCLOCK_DESC",
-                "Sacrifice yourself to resurrect all allies.");
+                "Sacrifice yourself to resurrect all allies. Destroyed on use.");
             LanguageAPI.Add("RUINABACKWARDSCLOCK_LORE",
                 "");
             #endregion

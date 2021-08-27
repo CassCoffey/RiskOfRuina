@@ -17,8 +17,8 @@ namespace RiskOfRuinaMod.Modules.Items
 
         public ItemDef itemDef;
 
-        public float procChance = 2f;
-        public float stackChance = 2f;
+        public float procChance = 1f;
+        public float stackChance = 1f;
 
         public override void ItemSetup()
         {
