@@ -1,0 +1,217 @@
+fileFormatVersion: 2
+guid: 77063511a73e712498972a44895058b1
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: ArmatureHair
+    100004: hair
+    100006: Hair-1
+    100008: Hair-1.001
+    100010: Hair-1.002
+    100012: Hair-1.003
+    100014: Hair-1.004
+    100016: Hair-1.005
+    100018: Hair-1.006
+    100020: Hair-1.007
+    100022: Hair-2
+    100024: Hair-2.001
+    100026: Hair-2.002
+    100028: Hair-2.003
+    100030: Hair-2.004
+    100032: Hair-2.005
+    100034: Hair-2.006
+    100036: Hair-2.007
+    100038: Hair-3
+    100040: Hair-3.001
+    100042: Hair-3.002
+    100044: Hair-3.003
+    100046: Hair-3.004
+    100048: Hair-3.005
+    100050: Hair-3.006
+    100052: Hair-3.007
+    100054: Hair0
+    100056: Hair0.001
+    100058: Hair0.002
+    100060: Hair0.003
+    100062: Hair0.004
+    100064: Hair0.005
+    100066: Hair0.006
+    100068: Hair0.007
+    100070: Hair1
+    100072: Hair1.001
+    100074: Hair1.002
+    100076: Hair1.003
+    100078: Hair1.004
+    100080: Hair1.005
+    100082: Hair1.006
+    100084: Hair1.007
+    100086: Hair2
+    100088: Hair2.001
+    100090: Hair2.002
+    100092: Hair2.003
+    100094: Hair2.004
+    100096: Hair2.005
+    100098: Hair2.006
+    100100: Hair2.007
+    100102: Hair3
+    100104: Hair3.001
+    100106: Hair3.002
+    100108: Hair3.003
+    100110: Hair3.004
+    100112: Hair3.005
+    100114: Hair3.006
+    100116: Hair3.007
+    100118: HairRoot
+    100120: Head
+    400000: //RootNode
+    400002: ArmatureHair
+    400004: hair
+    400006: Hair-1
+    400008: Hair-1.001
+    400010: Hair-1.002
+    400012: Hair-1.003
+    400014: Hair-1.004
+    400016: Hair-1.005
+    400018: Hair-1.006
+    400020: Hair-1.007
+    400022: Hair-2
+    400024: Hair-2.001
+    400026: Hair-2.002
+    400028: Hair-2.003
+    400030: Hair-2.004
+    400032: Hair-2.005
+    400034: Hair-2.006
+    400036: Hair-2.007
+    400038: Hair-3
+    400040: Hair-3.001
+    400042: Hair-3.002
+    400044: Hair-3.003
+    400046: Hair-3.004
+    400048: Hair-3.005
+    400050: Hair-3.006
+    400052: Hair-3.007
+    400054: Hair0
+    400056: Hair0.001
+    400058: Hair0.002
+    400060: Hair0.003
+    400062: Hair0.004
+    400064: Hair0.005
+    400066: Hair0.006
+    400068: Hair0.007
+    400070: Hair1
+    400072: Hair1.001
+    400074: Hair1.002
+    400076: Hair1.003
+    400078: Hair1.004
+    400080: Hair1.005
+    400082: Hair1.006
+    400084: Hair1.007
+    400086: Hair2
+    400088: Hair2.001
+    400090: Hair2.002
+    400092: Hair2.003
+    400094: Hair2.004
+    400096: Hair2.005
+    400098: Hair2.006
+    400100: Hair2.007
+    400102: Hair3
+    400104: Hair3.001
+    400106: Hair3.002
+    400108: Hair3.003
+    400110: Hair3.004
+    400112: Hair3.005
+    400114: Hair3.006
+    400116: Hair3.007
+    400118: HairRoot
+    400120: Head
+    2100000: WrappingMock
+    4300000: hair
+    9500000: //RootNode
+    13700000: hair
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

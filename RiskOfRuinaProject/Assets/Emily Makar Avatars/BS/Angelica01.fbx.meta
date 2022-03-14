@@ -1,0 +1,309 @@
+fileFormatVersion: 2
+guid: 2f5892ee782276447a84fd452a681b7e
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Armature.003
+    100004: body.001
+    100006: Chest
+    100008: Eye_L
+    100010: Eye_R
+    100012: Head
+    100014: Hips
+    100016: IndexFinger1_L
+    100018: IndexFinger1_R
+    100020: IndexFinger2_L
+    100022: IndexFinger2_R
+    100024: IndexFinger3_L
+    100026: IndexFinger3_R
+    100028: JacketBackLeft0
+    100030: JacketBackLeft0.001
+    100032: JacketBackLeft0.002
+    100034: JacketBackRight0
+    100036: JacketBackRight0.001
+    100038: JacketBackRight0.002
+    100040: JacketFrontLeft0
+    100042: JacketFrontLeft0.001
+    100044: JacketFrontLeft0.002
+    100046: JacketFrontLeft0.003
+    100048: JacketFrontRight0
+    100050: JacketFrontRight0.001
+    100052: JacketFrontRight0.002
+    100054: JacketFrontRight0.003
+    100056: JacketRoot
+    100058: Left ankle
+    100060: Left arm
+    100062: Left elbow
+    100064: Left knee
+    100066: Left leg
+    100068: Left shoulder
+    100070: Left toe
+    100072: Left wrist
+    100074: LeftEye
+    100076: LeftKneeStrand1
+    100078: LeftKneeStrand2
+    100080: LeftKneeStrand3
+    100082: LeftKneeStrand4
+    100084: LeftKneeWrappings1
+    100086: LeftKneeWrappings2
+    100088: LeftKneeWrappings3
+    100090: LeftLegStrand1
+    100092: LeftLegStrand2
+    100094: LeftLegStrand3
+    100096: LeftLegStrand4
+    100098: MiddleFinger1_L
+    100100: MiddleFinger1_R
+    100102: MiddleFinger2_L
+    100104: MiddleFinger2_R
+    100106: MiddleFinger3_L
+    100108: MiddleFinger3_R
+    100110: Neck
+    100112: PinkyFinger1_L
+    100114: PinkyFinger1_R
+    100116: PinkyFinger2_L
+    100118: PinkyFinger2_R
+    100120: PinkyFinger3_L
+    100122: PinkyFinger3_R
+    100124: Right ankle
+    100126: Right arm
+    100128: Right elbow
+    100130: Right knee
+    100132: Right leg
+    100134: Right shoulder
+    100136: Right toe
+    100138: Right wrist
+    100140: RightEye
+    100142: RightKneeLeftStand4
+    100144: RightKneeLeftStrand1
+    100146: RightKneeLeftStrand2
+    100148: RightKneeLeftStrand3
+    100150: RightKneeStrand1
+    100152: RightKneeStrand2
+    100154: RightKneeStrand3
+    100156: RightKneeStrand4
+    100158: RightLegStrand
+    100160: RightLegStrand.001
+    100162: RightLegStrand.002
+    100164: RightLegStrand.003
+    100166: RightLegWrappings
+    100168: RightLegWrappingsEnd
+    100170: RightLegWrappingsRoot
+    100172: RingFinger1_L
+    100174: RingFinger1_R
+    100176: RingFinger2_L
+    100178: RingFinger2_R
+    100180: RingFinger3_L
+    100182: RingFinger3_R
+    100184: Root
+    100186: Spine
+    100188: Thumb0_L
+    100190: Thumb0_R
+    100192: Thumb1_L
+    100194: Thumb1_R
+    100196: Thumb2_L
+    100198: Thumb2_R
+    100200: Tie0
+    100202: tie1
+    100204: tie2
+    100206: tie3
+    100208: tie4
+    100210: wrappings.001
+    400000: //RootNode
+    400002: Armature.003
+    400004: body.001
+    400006: Chest
+    400008: Eye_L
+    400010: Eye_R
+    400012: Head
+    400014: Hips
+    400016: IndexFinger1_L
+    400018: IndexFinger1_R
+    400020: IndexFinger2_L
+    400022: IndexFinger2_R
+    400024: IndexFinger3_L
+    400026: IndexFinger3_R
+    400028: JacketBackLeft0
+    400030: JacketBackLeft0.001
+    400032: JacketBackLeft0.002
+    400034: JacketBackRight0
+    400036: JacketBackRight0.001
+    400038: JacketBackRight0.002
+    400040: JacketFrontLeft0
+    400042: JacketFrontLeft0.001
+    400044: JacketFrontLeft0.002
+    400046: JacketFrontLeft0.003
+    400048: JacketFrontRight0
+    400050: JacketFrontRight0.001
+    400052: JacketFrontRight0.002
+    400054: JacketFrontRight0.003
+    400056: JacketRoot
+    400058: Left ankle
+    400060: Left arm
+    400062: Left elbow
+    400064: Left knee
+    400066: Left leg
+    400068: Left shoulder
+    400070: Left toe
+    400072: Left wrist
+    400074: LeftEye
+    400076: LeftKneeStrand1
+    400078: LeftKneeStrand2
+    400080: LeftKneeStrand3
+    400082: LeftKneeStrand4
+    400084: LeftKneeWrappings1
+    400086: LeftKneeWrappings2
+    400088: LeftKneeWrappings3
+    400090: LeftLegStrand1
+    400092: LeftLegStrand2
+    400094: LeftLegStrand3
+    400096: LeftLegStrand4
+    400098: MiddleFinger1_L
+    400100: MiddleFinger1_R
+    400102: MiddleFinger2_L
+    400104: MiddleFinger2_R
+    400106: MiddleFinger3_L
+    400108: MiddleFinger3_R
+    400110: Neck
+    400112: PinkyFinger1_L
+    400114: PinkyFinger1_R
+    400116: PinkyFinger2_L
+    400118: PinkyFinger2_R
+    400120: PinkyFinger3_L
+    400122: PinkyFinger3_R
+    400124: Right ankle
+    400126: Right arm
+    400128: Right elbow
+    400130: Right knee
+    400132: Right leg
+    400134: Right shoulder
+    400136: Right toe
+    400138: Right wrist
+    400140: RightEye
+    400142: RightKneeLeftStand4
+    400144: RightKneeLeftStrand1
+    400146: RightKneeLeftStrand2
+    400148: RightKneeLeftStrand3
+    400150: RightKneeStrand1
+    400152: RightKneeStrand2
+    400154: RightKneeStrand3
+    400156: RightKneeStrand4
+    400158: RightLegStrand
+    400160: RightLegStrand.001
+    400162: RightLegStrand.002
+    400164: RightLegStrand.003
+    400166: RightLegWrappings
+    400168: RightLegWrappingsEnd
+    400170: RightLegWrappingsRoot
+    400172: RingFinger1_L
+    400174: RingFinger1_R
+    400176: RingFinger2_L
+    400178: RingFinger2_R
+    400180: RingFinger3_L
+    400182: RingFinger3_R
+    400184: Root
+    400186: Spine
+    400188: Thumb0_L
+    400190: Thumb0_R
+    400192: Thumb1_L
+    400194: Thumb1_R
+    400196: Thumb2_L
+    400198: Thumb2_R
+    400200: Tie0
+    400202: tie1
+    400204: tie2
+    400206: tie3
+    400208: tie4
+    400210: wrappings.001
+    2100000: AngelicaTex
+    4300000: wrappings.001
+    4300002: body.001
+    9500000: //RootNode
+    13700000: body.001
+    13700002: wrappings.001
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
