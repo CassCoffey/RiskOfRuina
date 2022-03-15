@@ -210,7 +210,7 @@ namespace RiskOfRuinaMod
             }
 
             orig(self);
-        } *///hook never called properly anyway
+        } *///hook never called properly anyway (atleast for me -moon)
 
         private void CharacterBody_OnSkillActivated(On.RoR2.CharacterBody.orig_OnSkillActivated orig, CharacterBody self, GenericSkill skill)
         {
