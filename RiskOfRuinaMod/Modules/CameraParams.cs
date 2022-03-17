@@ -35,11 +35,11 @@ namespace RiskOfRuinaMod.Modules
         {
             CharacterCameraParams newParams = ScriptableObject.CreateInstance<CharacterCameraParams>();
 
-            newParams.maxPitch = pitch;
-            newParams.minPitch = -pitch;
-            newParams.pivotVerticalOffset = pivotVerticalOffset;
-            newParams.standardLocalCameraPos = standardPosition;
-            newParams.wallCushion = wallCushion;
+            newParams.data.maxPitch = pitch;
+            newParams.data.minPitch = -pitch;
+            newParams.data.pivotVerticalOffset = pivotVerticalOffset;
+            newParams.data.idealLocalCameraPos = standardPosition; //game code has a exception defined to tell you to use data.standardlocal instead of standardlocal, yet "standardlocal" doesnt exist in data and instead "ideallocalcamerapos" does, presumably same function just renamed
+            newParams.data.wallCushion = wallCushion;
 
             return newParams;
         }
