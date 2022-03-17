@@ -2047,7 +2047,6 @@ localScale = new Vector3(0.31015F, 0.31015F, 0.31015F),
             itemDisplayRules.Add(new ItemDisplayRuleSet.KeyAssetRuleGroup
             {
                 keyAsset = JunkContent.Items.CooldownOnCrit,
-
                 displayRuleGroup = new DisplayRuleGroup
                 {
                     rules = new ItemDisplayRule[]
