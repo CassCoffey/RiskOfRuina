@@ -20,7 +20,7 @@ namespace RiskOfRuinaMod.SkillStates.BaseStates
         public bool line = false;
 
         private bool hasCharged;
-        private GameObject default_defaultCrosshairPrefab;
+        private GameObject defaultCrosshairPrefab;
         private CharacterCameraParams defaultCameraParams;
         private uint loopSoundInstanceId;
         private float duration { get; set; }
@@ -56,7 +56,7 @@ namespace RiskOfRuinaMod.SkillStates.BaseStates
             this.PlayChannelAnimation();
             if (this.startChargeSoundString != "") Util.PlaySound(this.startChargeSoundString, base.gameObject);
             this.loopSoundInstanceId = Util.PlayAttackSpeedSound(this.chargeSoundString, base.gameObject, this.attackSpeedStat);
-            this.default_defaultCrosshairPrefab = base.characterBody._defaultCrosshairPrefab;
+            this.defaultCrosshairPrefab = base.characterBody._defaultCrosshairPrefab;
 
             if (this.crosshairOverridePrefab)
             {
@@ -131,7 +131,7 @@ namespace RiskOfRuinaMod.SkillStates.BaseStates
         {
             if (this.crosshairOverridePrefab)
             {
-                base.characterBody._defaultCrosshairPrefab = this.default_defaultCrosshairPrefab;
+                base.characterBody._defaultCrosshairPrefab = this.defaultCrosshairPrefab;
             }
             else
             {
