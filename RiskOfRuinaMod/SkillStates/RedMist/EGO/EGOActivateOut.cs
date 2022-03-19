@@ -20,6 +20,7 @@ namespace RiskOfRuinaMod.SkillStates
         private RedMistEmotionComponent EGOController;
         private RedMistStatTracker statTracker;
 
+        private CameraTargetParams.AimRequest aimRequest;
         public override void OnEnter()
         {
             base.OnEnter();
@@ -36,7 +37,7 @@ namespace RiskOfRuinaMod.SkillStates
             }
 
             base.cameraTargetParams.cameraParams = Modules.CameraParams.EGOActivateOutCameraParamsRedMist;
-            base.cameraTargetParams.aimMode = CameraTargetParams.AimType.Aura;
+            aimRequest = base.cameraTargetParams.RequestAimType(CameraTargetParams.AimType.Aura);
 
             this.FireShockwave();
 
@@ -100,7 +101,7 @@ namespace RiskOfRuinaMod.SkillStates
             base.OnExit();
 
             base.cameraTargetParams.cameraParams = Modules.CameraParams.defaultCameraParamsRedMist;
-            base.cameraTargetParams.aimMode = CameraTargetParams.AimType.Standard;
+            aimRequest?.Dispose();
 
             if (NetworkServer.active) base.characterBody.RemoveBuff(RoR2Content.Buffs.HiddenInvincibility);
         }

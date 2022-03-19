@@ -28,6 +28,8 @@ namespace RiskOfRuinaMod.SkillStates.BaseStates
         private ChildLocator childLocator { get; set; }
         private GameObject chargeEffectInstance { get; set; }
         protected GameObject areaIndicatorInstance { get; set; }
+ 
+        private CameraTargetParams.AimRequest aimRequest;
 
         public override void OnEnter()
         {
@@ -150,8 +152,11 @@ namespace RiskOfRuinaMod.SkillStates.BaseStates
                 this.EndAnimation();
             }
 
-            if (this.zooming) base.cameraTargetParams.cameraParams = Modules.CameraParams.defaultCameraParamsArbiter;
-
+            if (this.zooming)
+            {
+                base.cameraTargetParams.cameraParams = Modules.CameraParams.defaultCameraParamsArbiter;
+                aimRequest?.Dispose();
+            }
             if (NetworkServer.active) base.characterBody.RemoveBuff(RoR2Content.Buffs.Slow50);
 
             if (this.chargeEffectInstance) EntityState.Destroy(this.chargeEffectInstance);
@@ -188,7 +193,7 @@ namespace RiskOfRuinaMod.SkillStates.BaseStates
             if (charge >= 0.75f && this.zooming)
             {
                 base.cameraTargetParams.cameraParams = Modules.CameraParams.channelFullCameraParamsArbiter;
-                base.cameraTargetParams.aimMode = CameraTargetParams.AimType.Aura;
+                aimRequest = base.cameraTargetParams.RequestAimType(CameraTargetParams.AimType.Aura);
             }
 
             if (charge >= 1f)
@@ -204,7 +209,11 @@ namespace RiskOfRuinaMod.SkillStates.BaseStates
                 if (base.inputBank.sprint.wasDown)
                 {
                     base.characterBody.isSprinting = true;
-                    if (this.zooming) base.cameraTargetParams.cameraParams = Modules.CameraParams.defaultCameraParamsArbiter;
+                    if (this.zooming)
+                    {
+                        base.cameraTargetParams.cameraParams = Modules.CameraParams.defaultCameraParamsArbiter;
+                        aimRequest?.Dispose();
+                    }
                     this.RefundCooldown();
                     this.outer.SetNextStateToMain();
                     return;
