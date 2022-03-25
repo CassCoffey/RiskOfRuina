@@ -102,7 +102,6 @@ namespace RiskOfRuinaMod.SkillStates
 
             base.cameraTargetParams.cameraParams = Modules.CameraParams.defaultCameraParamsRedMist;
             aimRequest?.Dispose();
-
             if (NetworkServer.active) base.characterBody.RemoveBuff(RoR2Content.Buffs.HiddenInvincibility);
         }
 

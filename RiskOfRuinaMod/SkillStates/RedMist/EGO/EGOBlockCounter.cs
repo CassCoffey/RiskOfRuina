@@ -30,7 +30,7 @@ namespace RiskOfRuinaMod.SkillStates
         private HurtBoxGroup hurtboxGroup;
         private RedMistStatTracker statTracker;
         private ParticleSystem mistEffect;
-
+        public CameraTargetParams.AimRequest aimRequest;
 
         public override void OnEnter()
         {
@@ -182,7 +182,7 @@ namespace RiskOfRuinaMod.SkillStates
             }
 
             base.cameraTargetParams.cameraParams = Modules.CameraParams.defaultCameraParamsRedMist;
-            base.cameraTargetParams.aimMode = CameraTargetParams.AimType.Standard;
+            aimRequest?.Dispose();
 
 
             base.OnExit();
