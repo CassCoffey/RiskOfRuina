@@ -39,7 +39,7 @@ namespace RiskOfRuinaMod.SkillStates
                 blastAttack.baseDamage = Modules.StaticValues.pillarDamageCoefficient * this.damageStat;
                 blastAttack.falloffModel = BlastAttack.FalloffModel.SweetSpot;
                 blastAttack.damageColorIndex = DamageColorIndex.Default;
-                blastAttack.attackerFiltering = AttackerFiltering.NeverHit;
+                blastAttack.attackerFiltering = AttackerFiltering.NeverHitSelf;
                 blastAttack.crit = base.RollCrit();
                 blastAttack.damageType = DamageType.AOE;
                 blastAttack.Fire();

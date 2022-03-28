@@ -29,6 +29,7 @@ namespace RiskOfRuinaMod.SkillStates.BaseStates
         private float stopwatch = 0f;
         private float prevAge = 0f;
         private bool valid = true;
+        private CameraTargetParams.AimRequest aimRequest;
 
         public override void OnEnter()
         {
@@ -57,7 +58,7 @@ namespace RiskOfRuinaMod.SkillStates.BaseStates
 
             if (base.cameraTargetParams)
             {
-                base.cameraTargetParams.aimMode = CameraTargetParams.AimType.Aura;
+                aimRequest = base.cameraTargetParams.RequestAimType(CameraTargetParams.AimType.Aura);
             }
 
             if (this.muzzleString == "SpellCastEffect")
@@ -106,7 +107,7 @@ namespace RiskOfRuinaMod.SkillStates.BaseStates
 
             if (base.cameraTargetParams)
             {
-                base.cameraTargetParams.aimMode = CameraTargetParams.AimType.Standard;
+                aimRequest?.Dispose();
                 base.cameraTargetParams.cameraParams = Modules.CameraParams.defaultCameraParamsArbiter;
             }
         }

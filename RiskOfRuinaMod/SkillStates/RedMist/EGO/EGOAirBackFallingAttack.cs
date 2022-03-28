@@ -111,7 +111,7 @@ namespace RiskOfRuinaMod.SkillStates
 							baseDamage = this.trueDamage * StaticValues.airBackSlamAttackDamageCoefficient * mult,
 							damageColorIndex = 0,
 							falloffModel = 0,
-							attackerFiltering = AttackerFiltering.NeverHit,
+							attackerFiltering = AttackerFiltering.NeverHitSelf,
 							damageType = DamageType.Generic
 						};
 						blastAttack.Fire();

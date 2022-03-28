@@ -15,7 +15,7 @@ namespace RiskOfRuinaMod.SkillStates.BaseStates
         public GameObject crosshairOverridePrefab;
         protected static readonly float minChargeDuration = 0.5f;
 
-        private GameObject defaultCrosshairPrefab;
+        private GameObject default_defaultCrosshairPrefab;
         private uint loopSoundInstanceId;
         private float duration { get; set; }
         private Animator animator { get; set; }
@@ -52,11 +52,11 @@ namespace RiskOfRuinaMod.SkillStates.BaseStates
 
             base.PlayAnimation("Gesture, Override", "ChannelSpell", "Spell.playbackRate", 0.4f * this.duration);
             this.loopSoundInstanceId = Util.PlayAttackSpeedSound(this.chargeSoundString, base.gameObject, this.attackSpeedStat);
-            this.defaultCrosshairPrefab = base.characterBody.crosshairPrefab;
+            this.default_defaultCrosshairPrefab = base.characterBody._defaultCrosshairPrefab;
 
             if (this.crosshairOverridePrefab)
             {
-                base.characterBody.crosshairPrefab = this.crosshairOverridePrefab;
+                base.characterBody._defaultCrosshairPrefab = this.crosshairOverridePrefab;
             }
 
             base.StartAimMode(this.duration + 2f, false);
@@ -66,7 +66,7 @@ namespace RiskOfRuinaMod.SkillStates.BaseStates
         {
             if (base.characterBody)
             {
-                base.characterBody.crosshairPrefab = this.defaultCrosshairPrefab;
+                base.characterBody._defaultCrosshairPrefab = this.default_defaultCrosshairPrefab;
             }
 
             AkSoundEngine.StopPlayingID(this.loopSoundInstanceId);

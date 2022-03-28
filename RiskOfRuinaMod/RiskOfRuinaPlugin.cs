@@ -193,13 +193,13 @@ namespace RiskOfRuinaMod
             On.RoR2.GlobalEventManager.OnCharacterDeath += GlobalEvent_OnCharacterDeath;
             On.RoR2.CharacterSpeech.BrotherSpeechDriver.DoInitialSightResponse += BrotherSpeechDriver_DoInitialSightResponse;
             On.RoR2.CharacterSpeech.BrotherSpeechDriver.OnBodyKill += BrotherSpeechDriver_OnBodyKill;
-            On.RoR2.Networking.GameNetworkManager.OnClientSceneChanged += new On.RoR2.Networking.GameNetworkManager.hook_OnClientSceneChanged(this.GameNetworkManager_OnClientSceneChanged_Hook);
-            On.RoR2.UI.CharacterSelectController.SelectSurvivor += new On.RoR2.UI.CharacterSelectController.hook_SelectSurvivor(this.OnSurvivorSelected_Hook);
+            On.RoR2.Networking.NetworkManagerSystem.OnClientSceneChanged += new On.RoR2.Networking.NetworkManagerSystem.hook_OnClientSceneChanged(this.NetworkManagerSystem_OnClientSceneChanged_Hook);
+            On.RoR2.UI.CharacterSelectController.Update += Update_Hook;
             On.RoR2.CharacterBody.OnSkillActivated += CharacterBody_OnSkillActivated;
             DotController.onDotInflictedServerGlobal += new DotController.OnDotInflictedServerGlobalDelegate(DotController_InflictDot);
-            On.RoR2.Run.Start += Run_Start;
+            //On.RoR2.Run.Start += Run_Start; //see below
         }
-
+        /*
         private void Run_Start(On.RoR2.Run.orig_Start orig, Run self)
         {
             // Remove multiplayer-specific items
@@ -210,7 +210,7 @@ namespace RiskOfRuinaMod
             }
 
             orig(self);
-        }
+        } *///hook never called properly anyway (atleast for me -moon)
 
         private void CharacterBody_OnSkillActivated(On.RoR2.CharacterBody.orig_OnSkillActivated orig, CharacterBody self, GenericSkill skill)
         {
@@ -281,21 +281,21 @@ namespace RiskOfRuinaMod
             }
         }
 
-        private void OnSurvivorSelected_Hook(On.RoR2.UI.CharacterSelectController.orig_SelectSurvivor orig, CharacterSelectController self, SurvivorIndex survivor)
+        private void Update_Hook(On.RoR2.UI.CharacterSelectController.orig_Update orig, RoR2.UI.CharacterSelectController self)
         {
-            orig.Invoke(self, survivor);
-            SurvivorDef survivorDef = SurvivorCatalog.GetSurvivorDef(survivor);
-            if (survivorDef != null)
+            orig(self);
+            //RoR2.SurvivorDef survivorDef = RoR2.SurvivorCatalog.GetSurvivorDef(survivor);
+            if (self.currentSurvivorDef != null)
             {
-                this.IsRedMistSelected = survivorDef.cachedName == "RedMist";
-                this.IsArbiterSelected = survivorDef.cachedName == "Arbiter";
-                this.IsBlackSilenceSelected = survivorDef.cachedName == "BlackSilence";
-                this.IsModCharSelected = IsArbiterSelected || IsRedMistSelected || IsBlackSilenceSelected;
+                IsRedMistSelected = self.currentSurvivorDef.cachedName == "RedMist";
+                IsArbiterSelected = self.currentSurvivorDef.cachedName == "Arbiter";
+                IsBlackSilenceSelected = self.currentSurvivorDef.cachedName == "BlackSilence";
+                IsModCharSelected = IsArbiterSelected || IsRedMistSelected || IsBlackSilenceSelected;
             }
-            this.CurrentCharacterNameSelected = survivorDef.cachedName;
+            CurrentCharacterNameSelected = self.currentSurvivorDef?.cachedName;
         }
 
-        private void GameNetworkManager_OnClientSceneChanged_Hook(On.RoR2.Networking.GameNetworkManager.orig_OnClientSceneChanged orig, GameNetworkManager self, NetworkConnection conn)
+        private void NetworkManagerSystem_OnClientSceneChanged_Hook(On.RoR2.Networking.NetworkManagerSystem.orig_OnClientSceneChanged orig, NetworkManagerSystem self, NetworkConnection conn)
         {
             orig.Invoke(self, conn);
             if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name.Contains("outro") && this.IsModCharSelected)

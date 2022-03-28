@@ -22,6 +22,8 @@ namespace RiskOfRuinaMod.SkillStates
 
         public ShakeEmitter shakeEmitter;
 
+        private CameraTargetParams.AimRequest aimRequest;
+
         public override void OnEnter()
         {
             this.attackIndex = 1;
@@ -56,7 +58,7 @@ namespace RiskOfRuinaMod.SkillStates
             this.swingEffectPrefab = statTracker.EGOHorizontalPrefab;
 
             base.cameraTargetParams.cameraParams = Modules.CameraParams.HorizontalSlashCameraParamsRedMist;
-            base.cameraTargetParams.aimMode = CameraTargetParams.AimType.Aura;
+            aimRequest = base.cameraTargetParams.RequestAimType(CameraTargetParams.AimType.Aura);
         }
 
         protected override void PlayAttackAnimation()
@@ -133,7 +135,7 @@ namespace RiskOfRuinaMod.SkillStates
             }
 
             base.cameraTargetParams.cameraParams = Modules.CameraParams.defaultCameraParamsRedMist;
-            base.cameraTargetParams.aimMode = CameraTargetParams.AimType.Standard;
+            aimRequest?.Dispose();
 
             base.characterDirection.turnSpeed = originalTurnSpeed;
 

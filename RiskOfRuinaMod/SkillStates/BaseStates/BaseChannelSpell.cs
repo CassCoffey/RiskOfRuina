@@ -28,6 +28,8 @@ namespace RiskOfRuinaMod.SkillStates.BaseStates
         private ChildLocator childLocator { get; set; }
         private GameObject chargeEffectInstance { get; set; }
         protected GameObject areaIndicatorInstance { get; set; }
+ 
+        private CameraTargetParams.AimRequest aimRequest;
 
         public override void OnEnter()
         {
@@ -56,11 +58,11 @@ namespace RiskOfRuinaMod.SkillStates.BaseStates
             this.PlayChannelAnimation();
             if (this.startChargeSoundString != "") Util.PlaySound(this.startChargeSoundString, base.gameObject);
             this.loopSoundInstanceId = Util.PlayAttackSpeedSound(this.chargeSoundString, base.gameObject, this.attackSpeedStat);
-            this.defaultCrosshairPrefab = base.characterBody.crosshairPrefab;
+            this.defaultCrosshairPrefab = base.characterBody._defaultCrosshairPrefab;
 
             if (this.crosshairOverridePrefab)
             {
-                base.characterBody.crosshairPrefab = this.crosshairOverridePrefab;
+                base.characterBody._defaultCrosshairPrefab = this.crosshairOverridePrefab;
             }
 
             if (NetworkServer.active) base.characterBody.AddBuff(RoR2Content.Buffs.Slow50);
@@ -131,7 +133,7 @@ namespace RiskOfRuinaMod.SkillStates.BaseStates
         {
             if (this.crosshairOverridePrefab)
             {
-                base.characterBody.crosshairPrefab = this.defaultCrosshairPrefab;
+                base.characterBody._defaultCrosshairPrefab = this.defaultCrosshairPrefab;
             }
             else
             {
@@ -150,8 +152,10 @@ namespace RiskOfRuinaMod.SkillStates.BaseStates
                 this.EndAnimation();
             }
 
-            if (this.zooming) base.cameraTargetParams.cameraParams = Modules.CameraParams.defaultCameraParamsArbiter;
-
+            if (this.zooming)
+            {
+                base.cameraTargetParams.cameraParams = Modules.CameraParams.defaultCameraParamsArbiter;
+            }
             if (NetworkServer.active) base.characterBody.RemoveBuff(RoR2Content.Buffs.Slow50);
 
             if (this.chargeEffectInstance) EntityState.Destroy(this.chargeEffectInstance);
@@ -188,7 +192,6 @@ namespace RiskOfRuinaMod.SkillStates.BaseStates
             if (charge >= 0.75f && this.zooming)
             {
                 base.cameraTargetParams.cameraParams = Modules.CameraParams.channelFullCameraParamsArbiter;
-                base.cameraTargetParams.aimMode = CameraTargetParams.AimType.Aura;
             }
 
             if (charge >= 1f)
@@ -204,7 +207,10 @@ namespace RiskOfRuinaMod.SkillStates.BaseStates
                 if (base.inputBank.sprint.wasDown)
                 {
                     base.characterBody.isSprinting = true;
-                    if (this.zooming) base.cameraTargetParams.cameraParams = Modules.CameraParams.defaultCameraParamsArbiter;
+                    if (this.zooming)
+                    {
+                        base.cameraTargetParams.cameraParams = Modules.CameraParams.defaultCameraParamsArbiter;
+                    }
                     this.RefundCooldown();
                     this.outer.SetNextStateToMain();
                     return;

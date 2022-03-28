@@ -46,6 +46,8 @@ namespace RiskOfRuinaMod.SkillStates
 
         private float originalTurnSpeed;
 
+        private CameraTargetParams.AimRequest aimRequest;
+
         protected float trueMoveSpeed
         {
             get { return this.GetComponent<RedMistStatTracker>().modifiedMoveSpeed; }
@@ -147,7 +149,7 @@ namespace RiskOfRuinaMod.SkillStates
             if (chained)
             {
                 base.cameraTargetParams.cameraParams = Modules.CameraParams.HorizontalSlashCameraParamsRedMist;
-                base.cameraTargetParams.aimMode = CameraTargetParams.AimType.Aura;
+                aimRequest = base.cameraTargetParams.RequestAimType(CameraTargetParams.AimType.Aura);
 
                 startTime = 0.0f;
                 firstDash = false;
@@ -213,7 +215,7 @@ namespace RiskOfRuinaMod.SkillStates
             }
 
             base.cameraTargetParams.cameraParams = Modules.CameraParams.defaultCameraParamsRedMist;
-            base.cameraTargetParams.aimMode = CameraTargetParams.AimType.Standard;
+            aimRequest?.Dispose();
 
             base.OnExit();
         }

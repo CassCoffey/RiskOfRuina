@@ -66,7 +66,7 @@ namespace RiskOfRuinaMod.SkillStates
                 blastAttack.baseDamage = damageCo * this.damageStat;
                 blastAttack.falloffModel = BlastAttack.FalloffModel.None;
                 blastAttack.damageColorIndex = DamageColorIndex.Default;
-                blastAttack.attackerFiltering = AttackerFiltering.NeverHit;
+                blastAttack.attackerFiltering = AttackerFiltering.NeverHitSelf;
                 blastAttack.crit = base.RollCrit();
                 blastAttack.damageType = DamageType.Stun1s;
                 blastAttack.Fire();

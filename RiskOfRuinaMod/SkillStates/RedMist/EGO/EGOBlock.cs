@@ -35,6 +35,8 @@ namespace RiskOfRuinaMod.SkillStates
         private float originalHeight;
         private float originalRadius;
 
+        private CameraTargetParams.AimRequest aimRequest;
+
 
         public override void OnEnter()
         {
@@ -92,7 +94,7 @@ namespace RiskOfRuinaMod.SkillStates
             RiskOfRuinaNetworkManager.ServerOnHit += OnHit;
 
             base.cameraTargetParams.cameraParams = Modules.CameraParams.HorizontalSlashCameraParamsRedMist;
-            base.cameraTargetParams.aimMode = CameraTargetParams.AimType.Aura;
+            aimRequest = base.cameraTargetParams.RequestAimType(CameraTargetParams.AimType.Aura);
 
             CapsuleCollider col = (CapsuleCollider)base.characterBody.mainHurtBox.collider;
             originalHeight = col.height;
@@ -217,13 +219,14 @@ namespace RiskOfRuinaMod.SkillStates
                         this.outer.SetNextState(new EGOBlockCounter
                         {
                             damageCounter = this.damageCounter,
-                            bonusMult = this.bonusMult
+                            bonusMult = this.bonusMult,
+                            aimRequest = this.aimRequest
                         });
                     }
                 } else
                 {
                     base.cameraTargetParams.cameraParams = Modules.CameraParams.defaultCameraParamsRedMist;
-                    base.cameraTargetParams.aimMode = CameraTargetParams.AimType.Standard;
+                    aimRequest?.Dispose();
                 }
             }
 
@@ -232,7 +235,8 @@ namespace RiskOfRuinaMod.SkillStates
                 this.outer.SetNextState(new EGOBlockCounter
                 {
                     damageCounter = this.damageCounter,
-                    bonusMult = this.bonusMult
+                    bonusMult = this.bonusMult,
+                    aimRequest = this.aimRequest
                 });
             }
 
@@ -249,6 +253,7 @@ namespace RiskOfRuinaMod.SkillStates
                 base.characterBody.RemoveBuff(RoR2Content.Buffs.HiddenInvincibility);
             }
 
+            aimRequest?.Dispose();
             CapsuleCollider col = (CapsuleCollider)base.characterBody.mainHurtBox.collider;
             col.height = 1.5f;
             col.radius = 0.2f;
