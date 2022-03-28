@@ -155,7 +155,6 @@ namespace RiskOfRuinaMod.SkillStates.BaseStates
             if (this.zooming)
             {
                 base.cameraTargetParams.cameraParams = Modules.CameraParams.defaultCameraParamsArbiter;
-                aimRequest?.Dispose();
             }
             if (NetworkServer.active) base.characterBody.RemoveBuff(RoR2Content.Buffs.Slow50);
 
@@ -193,7 +192,6 @@ namespace RiskOfRuinaMod.SkillStates.BaseStates
             if (charge >= 0.75f && this.zooming)
             {
                 base.cameraTargetParams.cameraParams = Modules.CameraParams.channelFullCameraParamsArbiter;
-                aimRequest = base.cameraTargetParams.RequestAimType(CameraTargetParams.AimType.Aura);
             }
 
             if (charge >= 1f)
@@ -212,7 +210,6 @@ namespace RiskOfRuinaMod.SkillStates.BaseStates
                     if (this.zooming)
                     {
                         base.cameraTargetParams.cameraParams = Modules.CameraParams.defaultCameraParamsArbiter;
-                        aimRequest?.Dispose();
                     }
                     this.RefundCooldown();
                     this.outer.SetNextStateToMain();
